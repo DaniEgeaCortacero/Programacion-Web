@@ -1,0 +1,130 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background: darkorange;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.login_card{
+    background: #f5f5f5;
+
+    border-radius: 10px;
+
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
+
+    min-height: 400px;
+    width: 500px;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    transition: all 0.35s ease;
+}
+
+.login_card.registro{
+    min-height: 700px;
+    width: 700px;
+    z-index: 2;
+}
+
+.login_card.login{
+    min-height: 400px;
+    width: 500px;
+    z-index: 2;
+}
+
+.titulo {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.contenido div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contenido form{
+    margin-inline: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input {
+    box-sizing: border-box;
+    height: 35px;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.campos_principales{
+    border: 2px solid #989898;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.campos_secundarios{
+    border: 2px solid #989898;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+
+.panel{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 60px;
+}
+
+a{
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+
+    background: #ff8800;
+    color: white;
+
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+
+    transition: background 0.2s ease;
+}
+
+a:hover{
+    background: #e67600;
+}
+
+.btn_register{
+    background-color: darkred;
+}
+
+.btn_register:hover{
+    background-color: red;
+}
+
+.btn_volver{
+    background-color: rgb(111, 111, 111);
+}
+
+.btn_volver:hover{
+    background-color: rgb(175, 175, 175);
+}
