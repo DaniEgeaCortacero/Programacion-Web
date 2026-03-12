@@ -56,5 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   
+  // Editar Perfil
+
+  const editPerfilBtn = document.getElementById("editPerfilBtn");
+  const cancelEditBtn = document.getElementById("cancelEditBtn");
+  const perfilCard = document.querySelector(".perfil_card");
+
+  if (editPerfilBtn && perfilCard) {
+      editPerfilBtn.addEventListener("click", () => {
+          perfilCard.classList.add("editando");
+      });
+  }
+
+  if (cancelEditBtn && perfilCard) {
+      cancelEditBtn.addEventListener("click", () => {
+          perfilCard.classList.remove("editando");
+      });
+  }
 
 });

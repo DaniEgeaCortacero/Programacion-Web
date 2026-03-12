@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Prototipo web</title>
-    <link rel="stylesheet" href="../css/style_proto_main.css?v=29">
+    <link rel="stylesheet" href="../css/style_proto_main.css?v=30">
 </head>
 <body>
 
@@ -42,5 +42,5 @@
         <p>Pié de página</p>
     </footer>
 
-<script src="../js/app.js?v=5"></script>
+<script src="../js/app.js?v=7"></script>
 </body>

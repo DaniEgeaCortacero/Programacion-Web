@@ -7,7 +7,7 @@ $modo = $_GET['modo'] ?? 'login';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Prototipo web</title>
-    <link rel="stylesheet" href="../css/style_proto_login.css?v=30">
+    <link rel="stylesheet" href="../css/style_proto_login.css?v=35">
 </head>
 <body>
     <?php if ($modo == "login"): ?>
@@ -18,18 +18,18 @@ $modo = $_GET['modo'] ?? 'login';
 
         <div class="contenido">
             <form>
-                <div>
+                <div class="campo">
                     <label>Usuario/Email:</label>
                     <input required>
                 </div>
-                <div>
+                <div class="campo">
                     <label>Contraseña:</label>
                     <input type="password" required>
                 </div>
             </form>
         </div>
 
-        <div class="panel">
+        <div class="panel login">
             <a class="btn_register" href="http://localhost:8082/html/prototipo_login.php?modo=registro">Registrarse</a>
             <a class="btn_main" href="http://localhost:8082/html/prototipo_main.php">Siguiente</a>
         </div>
@@ -44,58 +44,69 @@ $modo = $_GET['modo'] ?? 'login';
         <div class="contenido">
             <form>
                 <div class="campos_principales">
-                    <div>
+                    <h3>Datos de acceso</h3>
+                    <div class="campo">
                         <label>Email:</label>
                         <input type="email" required>
                     </div>
-                    <div>
+                    <div class="campo">
                         <label>Nombre de usuario:</label>
-                        <input type="email" required>
+                        <input type="text" required>
                     </div>
-                    <div>
-                        <label>Contraseña:</label>
-                        <input type="password" required>
-                    </div>
-                    <div>
-                        <label>Confirmar contraseña:</label>
-                        <input type="password" required>
+                    <div class="fila_doble">
+                        <div class="campo">
+                            <label>Contraseña:</label>
+                            <input type="password" required>
+                        </div>
+                        <div class="campo">
+                            <label>Confirmar contraseña:</label>
+                            <input type="password" required>
+                        </div>
                     </div>
                 </div>
                 <div class="campos_secundarios">
-                    <div>
-                        <label>Nombre:</label>
-                        <input type="text" required>
+                    <h3>Información personal</h3>
+                    <div class="fila_doble">
+                        <div class="campo">
+                            <label>Nombre:</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="campo">
+                            <label>Apellidos:</label>
+                            <input type="text" required>
+                        </div>
                     </div>
-                    <div>
-                        <label>Apellidos:</label>
-                        <input type="text" required>
-                    </div>
-                    <div>
-                        <label>Fecha de nacimiento:</label>
-                        <input type="date" required>
-                    </div>
-                    <div>
+                    <div class="campo">
                         <label>Tipo de actividad preferida:</label>
                         <input type="text" required>
                     </div>
-                    <div>
-                        <label>Localidad:</label>
-                        <input type="text" required>
+                    <div class="fila_doble">
+                        <div class="campo">
+                            <label>Fecha de nacimiento:</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="campo">
+                            <label>Localidad:</label>
+                            <input type="text" required>
+                        </div>
                     </div>
-                    <div>
-                        <label>Provincia:</label>
-                        <input type="text" required>
+                    <div class="fila_doble">
+                        <div class="campo">
+                            <label>Provincia:</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="campo">
+                            <label>País:</label>
+                            <input type="text" required>
+                        </div>
                     </div>
-                    <div>
-                        <label>País:</label>
-                        <input type="text" required>
-                    </div>
+                    
                 </div>
                 
             </form>
         </div>
 
-        <div class="panel">
+        <div class="panel registro">
             <a class="btn_volver" href="http://localhost:8082/html/prototipo_login.php?modo=login">Volver</a>
             <a class="btn_crear" href="http://localhost:8082/html/prototipo_main.php">Registrarse</a>
         </div>
