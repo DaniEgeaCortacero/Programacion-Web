@@ -1,3 +1,46 @@
+
+let mapaModal = null;
+let capaGpxModal = null;
+
+function abrirEvento(rutaGPX) {
+  const modal = document.getElementById("modal_evento");
+  if (modal) {
+    modal.classList.add("activo");
+  }
+
+  if (!mapaModal) {
+    mapaModal = L.map("mapa_modal");
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap"
+    }).addTo(mapaModal);
+
+    mapaModal.setView([40.4168, -3.7038], 6);
+  }
+
+  if (capaGpxModal) {
+    mapaModal.removeLayer(capaGpxModal);
+  }
+
+  capaGpxModal = new L.GPX(rutaGPX, {
+    async: true,
+    polyline_options: {
+      color: "red",
+      opacity: 0.75,
+      weight: 4,
+      lineCap: "round"
+    }
+  }).on("loaded", function(e) {
+    mapaModal.fitBounds(e.target.getBounds(), {
+      padding: [20, 20]
+    });
+  }).addTo(mapaModal);
+
+  setTimeout(() => {
+    mapaModal.invalidateSize();
+  }, 150);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const pruebaBtn = document.getElementById("prueba_btn");
@@ -72,6 +115,100 @@ document.addEventListener("DOMContentLoaded", () => {
       cancelEditBtn.addEventListener("click", () => {
           perfilCard.classList.remove("editando");
       });
+  }
+
+
+  
+
+  // Cerrar modal
+  const cerrarModal = document.getElementById("cerrar_modal");
+  const modalEvento = document.getElementById("modal_evento");
+
+  if (cerrarModal && modalEvento) {
+      cerrarModal.addEventListener("click", () => {
+          modalEvento.classList.remove("activo");
+      });
+
+      modalEvento.addEventListener("click", (e) => {
+          if (e.target === modalEvento) {
+              modalEvento.classList.remove("activo");
+          }
+      });
+  }
+
+
+
+  // GPX
+  const inputRuta = document.getElementById("ruta");
+  const mensajePreview = document.getElementById("mensaje_preview");
+
+  let mapaPreview = null;
+  let capaRuta = null;
+
+  if (inputRuta) {
+    mapaPreview = L.map("mapa_preview");
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap"
+    }).addTo(mapaPreview);
+
+    mapaPreview.setView([40.4168, -3.7038], 6);
+
+    inputRuta.addEventListener("change", (e) => {
+      const archivo = e.target.files[0];
+
+      if (!archivo) {
+        mensajePreview.textContent = "Selecciona un archivo GPX para ver la ruta en el mapa.";
+        return;
+      }
+
+      const lector = new FileReader();
+
+      lector.onload = function(evento) {
+        try {
+          const textoXML = evento.target.result;
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(textoXML, "application/xml");
+
+          const geojson = toGeoJSON.gpx(xml);
+
+          if (capaRuta) {
+            mapaPreview.removeLayer(capaRuta);
+          }
+
+          capaRuta = L.geoJSON(geojson, {
+            style: {
+              color: "#ff9800",
+              weight: 4,
+              opacity: 0.9
+            },
+            pointToLayer: function(feature, latlng) {
+              return L.circleMarker(latlng, {
+                radius: 5,
+                color: "#ff9800",
+                fillColor: "#ff9800",
+                fillOpacity: 1
+              });
+            }
+          }).addTo(mapaPreview);
+
+          const bounds = capaRuta.getBounds();
+
+          if (bounds.isValid()) {
+            mapaPreview.fitBounds(bounds, { padding: [20, 20] });
+            mensajePreview.textContent = "Ruta GPX cargada correctamente.";
+          } else {
+            mensajePreview.textContent = "El archivo GPX no contiene una ruta válida.";
+          }
+
+        } catch (error) {
+          mensajePreview.textContent = "No se pudo leer el archivo GPX.";
+          console.error(error);
+        }
+      };
+
+      lector.readAsText(archivo);
+    });
   }
 
 });

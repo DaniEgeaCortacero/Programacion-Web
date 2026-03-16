@@ -84,8 +84,7 @@
                 <div class="datos_grid">
                     <div class="datos_item datos_item_full">
                         <label>Correo electrónico</label>
-                        <span class="modo_vista">email@gmail.com</span>
-                        <input class="modo_edicion" type="email" value="email@gmail.com">
+                        <span class="modo_vista_email">email@gmail.com</span>
                     </div>
                 </div>
             </div>

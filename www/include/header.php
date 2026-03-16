@@ -2,7 +2,7 @@
         <button id="toggleSidebar" class="btnMenu">☰</button>
         <nav class="nav">
             <a class="btnItem" href="http://localhost:8082/html/prototipo_main.php?vista=home">Inicio</a>
-            <a class="btnItem">Añadir evento</a>
+            <a class="btnItem" href="http://localhost:8082/html/prototipo_main.php?vista=crearEvento">Añadir evento</a>
             <a class="btnItem">Opción 3</a>
         </nav>
         <button id="toggleProfileMenu" class="toggleProfileMenu">

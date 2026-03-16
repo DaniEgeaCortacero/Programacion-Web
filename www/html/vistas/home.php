@@ -1,10 +1,55 @@
-<div class="prueba">
-    <p>Prueba de HTML:</p>
-    <ul>
-        <li>Elemento 1</li>
-        <li>Elemento 2</li>
-        <li>Elemento 3</li>
-    </ul>
+<h1 class="titulo_home">Tablón de Actividades</h1>
+
+<div class="evento">
+    <div class="evento_imagen">
+        <img src="https://via.placeholder.com/220x140" alt="Imagen de la actividad">
+    </div>
+
+    <div class="evento_info">
+        <p class="tipo_evento">Ciclismo</p>
+        <h3 class="titulo_evento">Ruta por Ceuta</h3>
+
+        <p class="evento_meta">🖼 1 imágenes</p>
+        <p class="evento_meta">👥 1 compañeros</p>
+    </div>
+
+    <div class="evento_lateral">
+        <p class="aplausos">👏 33</p>
+        <p class="usuarios_aplausos">Mucha gente</p>
+        <button class="btn_evento ver" onclick="abrirEvento('../../../Prueba.gpx')">Ver más</button>
+    </div>
 </div>
+
+<div class="evento">
+    <div class="evento_imagen">
+        <img src="https://via.placeholder.com/220x140" alt="Imagen de la actividad">
+    </div>
+
+    <div class="evento_info">
+        <p class="tipo_evento">Ciclismo</p>
+        <h3 class="titulo_evento">Prueba</h3>
+
+        <p class="evento_meta">🖼 5 imágenes</p>
+        <p class="evento_meta">👥 3 compañeros</p>
+    </div>
+
+    <div class="evento_lateral">
+        <p class="aplausos">👏 0</p>
+        <p class="usuarios_aplausos"></p>
+        <button class="btn_evento ver" onclick="abrirEvento('../../../Prueba2.gpx')">Ver más</button>
+    </div>
+</div>
+
+
+<?php  
+include("evento.php");
+include("evento.php");
+?>
+
+<?php  
+include("../include/modal.php");
+?>
+
+
 <button id="prueba_btn">Probar JS</button>
 <p id="out"></p>
