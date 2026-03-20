@@ -9,6 +9,7 @@
         <p class="tipo_evento">Ciclismo</p>
         <h3 class="titulo_evento">Ruta por Ceuta</h3>
 
+        <p class="evento_meta">👤 Creado por Dani</p>
         <p class="evento_meta">🖼 1 imágenes</p>
         <p class="evento_meta">👥 1 compañeros</p>
     </div>
@@ -29,6 +30,7 @@
         <p class="tipo_evento">Ciclismo</p>
         <h3 class="titulo_evento">Prueba</h3>
 
+        <p class="evento_meta">👤 Creado por Dani</p>
         <p class="evento_meta">🖼 5 imágenes</p>
         <p class="evento_meta">👥 3 compañeros</p>
     </div>
