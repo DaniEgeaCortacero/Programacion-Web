@@ -2,6 +2,26 @@
 let mapaModal = null;
 let capaGpxModal = null;
 
+function crearMapaCard(idMapa, rutaGPX){
+
+    const map = L.map(idMapa, {
+        zoomControl: false,
+        attributionControl: false
+    });
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    new L.GPX(rutaGPX,{
+        async:true,
+        polyline_options: {
+            color: "#ff9800",
+            weight: 3
+        }
+    }).on("loaded", function(e){
+        map.fitBounds(e.target.getBounds());
+    }).addTo(map);
+}
+
 function abrirEvento(rutaGPX) {
   const modal = document.getElementById("modal_evento");
   if (modal) {
@@ -138,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  // GPX
+  // GPX (abrir evento)
   const inputRuta = document.getElementById("ruta");
   const mensajePreview = document.getElementById("mensaje_preview");
 
@@ -210,5 +230,8 @@ document.addEventListener("DOMContentLoaded", () => {
       lector.readAsText(archivo);
     });
   }
+
+  crearMapaCard("map_card_1", "../../Prueba.gpx");
+  crearMapaCard("map_card_2", "../../Prueba2.gpx");
 
 });

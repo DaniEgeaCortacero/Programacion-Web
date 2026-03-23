@@ -25,7 +25,6 @@
                 </div>
                 <div class="botones_evento">
                     <button class="btn_evento editar" onclick="editarEvento()">Editar</button>
-                    <button class="btn_evento participar" onclick="participarEvento()">Participar</button>
                 </div>
             </div>
         </div>

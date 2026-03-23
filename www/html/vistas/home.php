@@ -1,8 +1,9 @@
 <h1 class="titulo_home">Tablón de Actividades</h1>
 
 <div class="evento">
-    <div class="evento_imagen">
-        <img src="https://via.placeholder.com/220x140" alt="Imagen de la actividad">
+
+    <div>
+        <div class="map_card" id="map_card_1"></div>
     </div>
 
     <div class="evento_info">
@@ -14,6 +15,10 @@
         <p class="evento_meta">👥 1 compañeros</p>
     </div>
 
+    <div class="evento_imagen">
+        <img src="https://via.placeholder.com/220x140" alt="Imagen de la actividad">
+    </div>
+
     <div class="evento_lateral">
         <p class="aplausos">👏 33</p>
         <p class="usuarios_aplausos">Mucha gente</p>
@@ -22,8 +27,9 @@
 </div>
 
 <div class="evento">
-    <div class="evento_imagen">
-        <img src="https://via.placeholder.com/220x140" alt="Imagen de la actividad">
+
+    <div>
+        <div class="map_card" id="map_card_2"></div>
     </div>
 
     <div class="evento_info">
@@ -33,6 +39,10 @@
         <p class="evento_meta">👤 Creado por Dani</p>
         <p class="evento_meta">🖼 5 imágenes</p>
         <p class="evento_meta">👥 3 compañeros</p>
+    </div>
+
+    <div class="evento_imagen">
+        <img src="https://via.placeholder.com/220x140" alt="Imagen de la actividad">
     </div>
 
     <div class="evento_lateral">

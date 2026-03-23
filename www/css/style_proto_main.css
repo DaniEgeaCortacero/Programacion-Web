@@ -723,8 +723,15 @@ footer {
     box-shadow: 0 8px 18px rgba(0,0,0,0.14);
 }
 
-.evento_imagen{
+.evento_map{
     flex: 0 0 220px;
+}
+
+.map_card{
+    width: 120px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: #ddd;
 }
 
 .evento_imagen img{

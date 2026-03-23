@@ -38,10 +38,9 @@
             </div>
 
             <div class="seccion_datos">
-                <h2>Actividades publicadas</h2>
+                <h2>Ultima actividad publicada</h2>
 
                 <div class="datos_actividad">
-                    <?php include("evento.php"); ?>
                     <?php include("evento.php"); ?>
                 </div>
             </div>

@@ -86,16 +86,10 @@
             <section class="seccion_evento">
                 <h2>Detalles adicionales</h2>
 
-                <div class="grid_doble">
-                    <div class="campo">
-                        <label for="aforo">Número máximo de personas</label>
-                        <input type="number" id="aforo" name="aforo" placeholder="Ej: 10">
-                    </div>
 
-                    <div class="campo">
-                        <label for="imagenes">Imágenes</label>
-                        <input type="file" id="imagenes" name="imagenes[]" multiple>
-                    </div>
+                <div class="campo">
+                    <label for="imagenes">Imágenes</label>
+                    <input type="file" id="imagenes" name="imagenes[]" multiple>
                 </div>
             </section>
 
