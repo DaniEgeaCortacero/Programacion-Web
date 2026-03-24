@@ -11,6 +11,6 @@
         <div id="profileDropdown" class="profileDropdown">
             <a href="prototipo_main.php?vista=perfil">Perfil</a>
             <a href="prototipo_main.php?vista=configuracion">Configuración</a>
-            <a href="logout.php">Cerrar sesión</a>
+            <a href="prototipo_login.php?modo=login">Cerrar sesión</a>
         </div>
     </header>
