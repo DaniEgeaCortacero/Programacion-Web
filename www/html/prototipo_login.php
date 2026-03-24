@@ -86,19 +86,21 @@ $modo = $_GET['modo'] ?? 'login';
                             <input type="date" required>
                         </div>
                         <div class="campo">
+                            <label>País:</label>
+                            <input type="text" required>
+                        </div>
+                        
+                    </div>
+                    <div class="fila_doble">
+                        <div class="campo">
                             <label>Localidad:</label>
                             <input type="text" required>
                         </div>
-                    </div>
-                    <div class="fila_doble">
                         <div class="campo">
                             <label>Provincia:</label>
                             <input type="text" required>
                         </div>
-                        <div class="campo">
-                            <label>País:</label>
-                            <input type="text" required>
-                        </div>
+                        
                     </div>
                     
                 </div>
