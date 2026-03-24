@@ -15,8 +15,10 @@
         <p class="evento_meta">👥 1 compañeros</p>
     </div>
 
-    <div class="evento_imagen">
-        <img src="https://via.placeholder.com/220x140" alt="Imagen de la actividad">
+    <div class="evento_imagenes">
+        <img src="../../img/paisaje3.jpg" alt="">
+        <img src="../../img/paisaje4.jpg" alt="">
+        <div class="overlay_imagen">+2</div>
     </div>
 
     <div class="evento_lateral">
@@ -41,8 +43,10 @@
         <p class="evento_meta">👥 3 compañeros</p>
     </div>
 
-    <div class="evento_imagen">
-        <img src="https://via.placeholder.com/220x140" alt="Imagen de la actividad">
+    <div class="evento_imagenes">
+        <img src="../../img/paisaje1.jpg" alt="">
+        <img src="../../img/paisaje2.jpg" alt="">
+        <div class="overlay_imagen">+2</div>
     </div>
 
     <div class="evento_lateral">

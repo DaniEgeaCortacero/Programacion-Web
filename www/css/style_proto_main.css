@@ -703,19 +703,19 @@ footer {
 /* ####################### ACTIVIDAD ####################### */
 
 .evento{
-    min-width: auto;
-    margin: 18px auto;
     display: flex;
-    align-items: stretch;
-    gap: 18px;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
 
-    background: #fffdf8;
-    border: 1px solid #d8c9a7;
-    border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+    width: min(1100px, 96%);
+    margin: 18px auto;
+    padding: 18px 20px;
 
-    padding: 16px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: #f8f8f6;
+    border: 1px solid #d9cfae;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .evento:hover{
@@ -724,29 +724,54 @@ footer {
 }
 
 .evento_map{
-    flex: 0 0 220px;
+    flex: 0 0 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .map_card{
-    width: 120px;
-    height: 80px;
-    border-radius: 10px;
-    background-color: #ddd;
+    width: 110px;
+    height: 110px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid #ff9800;
+    background: #ddd;
 }
 
-.evento_imagen img{
-    width: 100%;
-    height: 140px;
+.evento_imagenes{
+    flex: 0 0 150px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.evento_imagenes img{
+    width: 70px;
+    height: 88px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 10px;
     display: block;
 }
 
-.evento_info{
-    flex: 1;
+.overlay_imagen{
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    width: 70px;
+    height: 88px;
+    border-radius: 10px;
+    background: linear-gradient(
+        rgba(0,0,0,0.3),
+        rgba(0,0,0,0.7)
+    );
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.evento_info{
+    flex: 1 1 260px;
+    min-width: 0px;
 }
 
 .tipo_evento{
@@ -771,12 +796,13 @@ footer {
 }
 
 .evento_lateral{
-    flex: 0 0 180px;
+    flex: 0 0 130px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: flex-end;
+    justify-content: center;
     text-align: right;
+    gap: 10px;
 }
 
 .aplausos{
@@ -848,6 +874,7 @@ footer {
     opacity: 0;
 
     transition: opacity 0.25s ease;
+    z-index: 9999;
 }
 
 .modal_evento.activo{

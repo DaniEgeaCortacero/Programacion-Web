@@ -5,17 +5,31 @@ let capaGpxModal = null;
 function crearMapaCard(idMapa, rutaGPX){
 
     const map = L.map(idMapa, {
-        zoomControl: false,
-        attributionControl: false
+    zoomControl: false,
+    attributionControl: false,
+    dragging: false,
+    scrollWheelZoom: false,
+    doubleClickZoom: false,
+    boxZoom: false,
+    keyboard: false,
+    tap: false,
+    touchZoom: false
     });
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
     new L.GPX(rutaGPX,{
         async:true,
+        marker_options: {
+            startIconUrl: null,
+            endIconUrl: null,
+            shadowUrl: null
+        },
         polyline_options: {
-            color: "#ff9800",
-            weight: 3
+            color: "darkorange",
+            opacity: 0.75,
+            weight: 4,
+            lineCap: "round"
         }
     }).on("loaded", function(e){
         map.fitBounds(e.target.getBounds());
@@ -44,6 +58,11 @@ function abrirEvento(rutaGPX) {
 
   capaGpxModal = new L.GPX(rutaGPX, {
     async: true,
+    marker_options: {
+            startIconUrl: null,
+            endIconUrl: null,
+            shadowUrl: null
+    },
     polyline_options: {
       color: "red",
       opacity: 0.75,
@@ -233,5 +252,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   crearMapaCard("map_card_1", "../../Prueba.gpx");
   crearMapaCard("map_card_2", "../../Prueba2.gpx");
+
+  setTimeout(() => {      /* Reajusta el mapa */
+    map.invalidateSize();
+  }, 50);
 
 });
