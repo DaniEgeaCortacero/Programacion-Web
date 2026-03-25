@@ -94,6 +94,19 @@
                 <button type="submit" class="btn_primario">Guardar cambios</button>
             </div>
 
+            <div class="seccion_datos mis_actividades">
+                <h2>Mis actividades</h2>
+
+                <div class="datos_actividad">
+                    <?php include("evento.php"); ?>
+                    <?php include("evento.php"); ?>
+                </div>
+            </div>
+
         </form>
     </div>
 </section>
+
+<?php  
+    include("../include/modal.php");
+?>

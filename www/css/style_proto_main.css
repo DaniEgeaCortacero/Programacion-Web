@@ -691,6 +691,10 @@ footer {
     display: flex;
 }
 
+.perfil_card.editando .seccion_datos.mis_actividades{
+    display: none;
+}
+
 
 /* ####################### HOME ####################### */
 
