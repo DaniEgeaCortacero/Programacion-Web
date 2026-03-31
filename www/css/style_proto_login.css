@@ -6,15 +6,50 @@
 
 body {
     margin: 0;
-    background: darkorange;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
+    background-image: url("../img/Fondo_login.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     min-height: 100vh;
 
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.acceso {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 20px;
+    gap: 20px;
+}
+
+.marca {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.marca img {
+    width: 320px;
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.marca p {
+    margin: 5px 0 0;
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+    color: black;
 }
 
 .login_card{

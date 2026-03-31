@@ -18,15 +18,15 @@ body {
 
 header {
   display: flex;
-  flex-wrap: wrap;
-  background: darkorange;
+  flex-wrap: nowrap;
+  background: linear-gradient(135deg, #ff9f1c 0%, #ff7a00 50%, #a34d00 100%);
   align-items: center;
   gap: 15px;
   padding-inline: 15px;
   padding-block: 10px;
   margin: 0;
 
-  box-shadow: 0px 5px 5px rgba(0,0,0,0.35);
+  box-shadow: 0px 8px 12px rgba(0,0,0,0.35);
 
   position: relative;
   z-index: 3;
@@ -60,7 +60,7 @@ header {
   display: flex;
   flex: 1;
   gap: 15px;
-  justify-content: space-around;
+  justify-content: right;
 }
 
 /* ---- Botones Header Items ---- */
@@ -85,6 +85,22 @@ header {
   background: rgba(0, 0, 0, 0.336);
 }
 */
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.headerLeft a {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+    margin-left: 10px;
+}
 
 .btnItem{
   background: none;
