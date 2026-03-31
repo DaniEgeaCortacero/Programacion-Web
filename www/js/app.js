@@ -36,6 +36,9 @@ function crearMapaCard(idMapa, rutaGPX){
     }).addTo(map);
 }
 
+
+/* ####################### ACTIVIDAD - MODAL ####################### */
+
 function abrirEvento(rutaGPX) {
   const modal = document.getElementById("modal_evento");
   if (modal) {
@@ -79,6 +82,25 @@ function abrirEvento(rutaGPX) {
     mapaModal.invalidateSize();
   }, 150);
 }
+
+/* ####################### USUARIOS - IMAGENES - MODAL ####################### */
+
+function abrirModalImagenes(userId) {
+    document.getElementById("modalImagenes").style.display = "flex";
+
+    // aquí luego meterás AJAX
+    document.getElementById("contenidoImagenes").innerHTML =
+        "<p>Cargando imágenes del usuario " + userId + "...</p>";
+}
+
+function cerrarModal() {
+    document.getElementById("modalImagenes").style.display = "none";
+}
+
+
+
+
+/* ####################### DOCUMENTO ####################### */
 
 document.addEventListener("DOMContentLoaded", () => {
 

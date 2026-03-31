@@ -276,7 +276,7 @@ header {
   padding: 8px 14px 8px 28px;
 }
 
-.submenu_item.open .submenu{
+.submenu_item.open > .submenu{
   display: block;
 }
 

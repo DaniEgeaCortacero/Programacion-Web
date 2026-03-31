@@ -2,9 +2,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Prototipo web</title>
-    <link rel="stylesheet" href="../css/style_proto_main.css?v=2">
+
+    <link rel="stylesheet" href="../css/style_proto_main.css?v=5">
+    <link rel="stylesheet" href="../css/style_proto_admin.css?v=6">
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/@tmcw/togeojson@5.8.1/dist/togeojson.umd.js"></script>
 </head>
@@ -44,7 +49,13 @@
                     'home' => 'vistas/home.php',
                     'perfil' => 'vistas/perfil.php',
                     'usuario' => 'vistas/amistad_detalles.php',
-                    'crearEvento' => 'vistas/evento_creacion.php'
+                    'crearEvento' => 'vistas/evento_creacion.php',
+                    
+                    'admin_administracion' => 'admin/administracion.php',
+                    'admin_datos' => 'admin/datos.php',
+                    'admin_usuarios' => 'admin/usuarios.php',
+                    'admin_actividades' => 'admin/actividades.php'
+
                 ];
 
                 if(isset($vistas[$vista])){
@@ -63,6 +74,6 @@
         <a href="https://es.textstudio.com/">Generador de fuentes</a>
     </footer>
 
-<script src="../js/app.js?v=13"></script>
+<script src="../js/app.js?v=16"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
 </body>
