@@ -12,7 +12,7 @@
             </ul>
         </li>
 
-        <li><a href="http://localhost:8082">INDEX</a></li>  <!-- pagina nueva: target="_blank" -->
+        <li><a href="../index.php">INDEX</a></li>  <!-- pagina nueva: target="_blank" -->
       </ul>
     </nav>
   </aside>

@@ -14,8 +14,8 @@
     </div>
 
     <div class="evento_imagenes">
-        <img src="../../img/paisaje3.jpg" alt="">
-        <img src="../../img/paisaje2.jpg" alt="">
+        <img src="../img/paisaje3.jpg" alt="">
+        <img src="../img/paisaje2.jpg" alt="">
         <div class="overlay_imagen">+2</div>
     </div>
 

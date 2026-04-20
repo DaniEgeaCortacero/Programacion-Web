@@ -7,7 +7,7 @@ $modo = $_GET['modo'] ?? 'login';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Prototipo web</title>
-    <link rel="stylesheet" href="../css/style_proto_login.css?v=9">
+    <link rel="stylesheet" href="../css/style_proto_login.css?v=15">
 </head>
 <body>
     <div class="acceso">
@@ -36,8 +36,8 @@ $modo = $_GET['modo'] ?? 'login';
             </div>
 
             <div class="panel login">
-                <a class="btn_register" href="http://localhost:8082/html/prototipo_login.php?modo=registro">Registrarse</a>
-                <a class="btn_main" href="http://localhost:8082/html/prototipo_main.php">Siguiente</a>
+                <a class="btn_register" href="./prototipo_login.php?modo=registro">Registrarse</a>
+                <a class="btn_main" href="./prototipo_main.php">Siguiente</a>
             </div>
         </main>
 
@@ -115,8 +115,8 @@ $modo = $_GET['modo'] ?? 'login';
             </div>
 
             <div class="panel registro">
-                <a class="btn_volver" href="http://localhost:8082/html/prototipo_login.php?modo=login">Volver</a>
-                <a class="btn_crear" href="http://localhost:8082/html/prototipo_main.php">Registrarse</a>
+                <a class="btn_volver" href="./prototipo_login.php?modo=login">Volver</a>
+                <a class="btn_crear" href="./prototipo_main.php">Registrarse</a>
             </div>
         </main>
         <?php endif; ?>

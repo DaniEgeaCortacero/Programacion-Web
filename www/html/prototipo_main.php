@@ -5,8 +5,8 @@
 
     <title>Prototipo web</title>
 
-    <link rel="stylesheet" href="../css/style_proto_main.css?v=5">
-    <link rel="stylesheet" href="../css/style_proto_admin.css?v=6">
+    <link rel="stylesheet" href="../css/style_proto_main.css?v=7">
+    <link rel="stylesheet" href="../css/style_proto_admin.css?v=8">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 
@@ -74,6 +74,6 @@
         <a href="https://es.textstudio.com/">Generador de fuentes</a>
     </footer>
 
-<script src="../js/app.js?v=16"></script>
+<script src="../js/app.js?v=18"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
 </body>

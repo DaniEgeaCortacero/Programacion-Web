@@ -13,8 +13,8 @@
     <button id="toggleSidebar" class="btn">☰</button>
     <nav class="topnav">
       <ul>
-        <li><a href="http://localhost:8082/html/prototipo_main.php">Prototipo</a></li>
-        <li><a href="http://localhost:8082/html/prototipo_login.php?modo=login">Login</a></li>
+        <li><a href="./html/prototipo_main.php">Prototipo</a></li>
+        <li><a href="./html/prototipo_login.php?modo=login">Login</a></li>
       </ul>
     </nav>
   </header>

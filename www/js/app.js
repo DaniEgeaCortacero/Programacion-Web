@@ -272,8 +272,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  crearMapaCard("map_card_1", "../../Prueba.gpx");
-  crearMapaCard("map_card_2", "../../Prueba2.gpx");
+  crearMapaCard("map_card_1", "../Prueba.gpx");
+  crearMapaCard("map_card_2", "../Prueba2.gpx");
 
   setTimeout(() => {      /* Reajusta el mapa */
     map.invalidateSize();
