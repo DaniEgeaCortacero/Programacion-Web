@@ -22,8 +22,8 @@ $modo = $_GET['modo'] ?? 'login';
                 <h1>LOGIN</h1>
             </div>
 
-            <div class="contenido">
-                <form>
+            <form action="control.php" method="post" id="form_login">
+                <div class="contenido">
                     <div class="campo">
                         <label>Usuario/Email:</label>
                         <input required>
@@ -32,13 +32,15 @@ $modo = $_GET['modo'] ?? 'login';
                         <label>Contraseña:</label>
                         <input type="password" required>
                     </div>
-                </form>
-            </div>
+                </div>
 
-            <div class="panel login">
-                <a class="btn_register" href="./prototipo_login.php?modo=registro">Registrarse</a>
-                <a class="btn_main" href="./prototipo_main.php">Siguiente</a>
-            </div>
+                <div class="panel login">
+                    <a class="btn_register" href="./prototipo_login.php?modo=registro">Registrarse</a>
+                    <a class="btn_main" href="./prototipo_main.php">Siguiente</a>
+                </div>
+            </form>
+
+
         </main>
 
         <?php elseif ($modo == "registro"): ?>
@@ -47,8 +49,8 @@ $modo = $_GET['modo'] ?? 'login';
                 <h1>REGISTRARSE</h1>
             </div>
 
-            <div class="contenido">
-                <form>
+            <form action="control.php" method="post" id="form_registro">
+                <div class="contenido">
                     <div class="campos_principales">
                         <h3>Datos de acceso</h3>
                         <div class="campo">
@@ -95,7 +97,7 @@ $modo = $_GET['modo'] ?? 'login';
                                 <label>País:</label>
                                 <input type="text" required>
                             </div>
-                            
+                                
                         </div>
                         <div class="fila_doble">
                             <div class="campo">
@@ -106,18 +108,19 @@ $modo = $_GET['modo'] ?? 'login';
                                 <label>Provincia:</label>
                                 <input type="text" required>
                             </div>
-                            
+                                
                         </div>
-                        
+                            
                     </div>
-                    
-                </form>
-            </div>
+                </div>
 
-            <div class="panel registro">
-                <a class="btn_volver" href="./prototipo_login.php?modo=login">Volver</a>
-                <a class="btn_crear" href="./prototipo_main.php">Registrarse</a>
-            </div>
+                <div class="panel registro">
+                    <a class="btn_volver" href="./prototipo_login.php?modo=login">Volver</a>
+                    <a class="btn_crear" href="./prototipo_main.php">Registrarse</a>
+                </div>
+            </form>
+
+            
         </main>
         <?php endif; ?>
     </div>
