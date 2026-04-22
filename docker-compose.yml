@@ -32,7 +32,7 @@ services:
     container_name: pma
     restart: always
     environment:
-      PMA_HOST: db
+      PMA_HOST: practica
       MYSQL_ROOT_PASSWORD: practica
     ports:
       - "8081:80"

@@ -7,7 +7,7 @@ $modo = $_GET['modo'] ?? 'login';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Prototipo web</title>
-    <link rel="stylesheet" href="../css/style_proto_login.css?v=15">
+    <link rel="stylesheet" href="../css/style_proto_login.css?v=16">
 </head>
 <body>
     <div class="acceso">
@@ -22,7 +22,7 @@ $modo = $_GET['modo'] ?? 'login';
                 <h1>LOGIN</h1>
             </div>
 
-            <form action="control.php" method="post" id="form_login">
+            <form action="../controladores/login.php" method="post" id="form_login">
                 <div class="contenido">
                     <div class="campo">
                         <label>Usuario/Email:</label>
@@ -36,7 +36,7 @@ $modo = $_GET['modo'] ?? 'login';
 
                 <div class="panel login">
                     <a class="btn_register" href="./prototipo_login.php?modo=registro">Registrarse</a>
-                    <a class="btn_main" href="./prototipo_main.php">Siguiente</a>
+                    <button type="submit" class="btn_main" href="./prototipo_main.php">Siguiente</button>
                 </div>
             </form>
 
@@ -49,7 +49,7 @@ $modo = $_GET['modo'] ?? 'login';
                 <h1>REGISTRARSE</h1>
             </div>
 
-            <form action="control.php" method="post" id="form_registro">
+            <form action="../controladores/registro.php" method="post" id="form_registro">
                 <div class="contenido">
                     <div class="campos_principales">
                         <h3>Datos de acceso</h3>
