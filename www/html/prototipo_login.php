@@ -26,11 +26,11 @@ $modo = $_GET['modo'] ?? 'login';
                 <div class="contenido">
                     <div class="campo">
                         <label>Usuario/Email:</label>
-                        <input required>
+                        <input required name="usuario">
                     </div>
                     <div class="campo">
                         <label>Contraseña:</label>
-                        <input type="password" required>
+                        <input type="password" required name="clave">
                     </div>
                 </div>
 

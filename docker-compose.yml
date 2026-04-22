@@ -17,7 +17,7 @@ services:
       - "3306:3306"
 
   web:
-    image: php:8.3-apache
+    build: .
     container_name: apache_php
     restart: always
     ports:
@@ -32,7 +32,7 @@ services:
     container_name: pma
     restart: always
     environment:
-      PMA_HOST: practica
+      PMA_HOST: db
       MYSQL_ROOT_PASSWORD: practica
     ports:
       - "8081:80"

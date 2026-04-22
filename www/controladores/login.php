@@ -2,7 +2,7 @@
 session_start();
 require_once "./db.php";
 
-$mysqli = new mysqli('localhost', 'practica', 'practica', 'practica');
+$mysqli = new mysqli('db', 'practica', 'practica', 'practica');
 
 if ($mysqli->connect_errno) {
     die("Error de conexión: " . $mysqli->connect_error);
@@ -10,7 +10,7 @@ if ($mysqli->connect_errno) {
 
 $mysqli->set_charset("utf8mb4");
 
-$login = $_POST['usuario'];   // puede ser usuario o correo
+$login = $_POST['usuario'];   // Puede ser usuario o correo
 $clave = $_POST['clave'];
 
 $sql = "SELECT id, usuario, correo, contrasena, id_rol
