@@ -1,3 +1,17 @@
+<?php
+    session_start();
+
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+    header("Cache-Control: post-check=0, pre-check=0", false);
+    header("Pragma: no-cache");
+    header("Expires: 0");
+
+    if (!isset($_SESSION["autentica"]) || $_SESSION["autentica"] !== "SIP") {
+        header("Location: ./prototipo_login.php");
+        exit;
+    }
+?>
+
 <!doctype html>
 <head>
     <meta charset="utf-8">
@@ -34,9 +48,7 @@
                     </div>
 
                     <div class="lista_panel_amigos">
-                        <? include("./vistas/amistad.php"); ?>
-                        <? include("./vistas/amistad.php"); ?>
-                        <? include("./vistas/amistad.php"); ?>
+                        <?php include("./vistas/amistad.php"); ?>
                     </div>
                 </div>
             </div>
@@ -48,7 +60,7 @@
                 $vistas = [
                     'home' => 'vistas/home.php',
                     'perfil' => 'vistas/perfil.php',
-                    'usuario' => 'vistas/amistad_detalles.php',
+                    'amistad_detalles' => 'vistas/amistad_detalles.php',
                     'crearEvento' => 'vistas/evento_creacion.php',
                     
                     'admin_administracion' => 'admin/administracion.php',
@@ -75,5 +87,6 @@
     </footer>
 
 <script src="../js/app.js?v=18"></script>
+<script src="../js/disable_cache.js?v=2"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
 </body>
