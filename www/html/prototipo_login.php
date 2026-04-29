@@ -1,5 +1,9 @@
 <?php
 $modo = $_GET['modo'] ?? 'login';
+if ($modo === 'registro') {
+    require_once "../controladores/load_paises.php";
+    require_once "../controladores/load_tipos_actividad.php";
+}
 ?>
 
 <!doctype html>
@@ -8,7 +12,7 @@ $modo = $_GET['modo'] ?? 'login';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Prototipo web</title>
-    <link rel="stylesheet" href="../css/style_proto_login.css?v=16">
+    <link rel="stylesheet" href="../css/style_proto_login.css?v=24">
 </head>
 
 <body>
@@ -88,7 +92,14 @@ $modo = $_GET['modo'] ?? 'login';
                             </div>
                             <div class="campo">
                                 <label>Tipo de actividad preferida:</label>
-                                <input type="" name="actividad_favorita" required>
+                                <select name="tipo_actividad" id="tipo_actividad" required>
+                                    <option value="">Selecciona actividad</option>
+                                    <?php foreach ($tipos_actividad as $tipo): ?>
+                                        <option value="<?= $tipo["id"] ?>">
+                                            <?= htmlspecialchars($tipo["nombre"]) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="fila_doble">
                                 <div class="campo">
@@ -97,23 +108,26 @@ $modo = $_GET['modo'] ?? 'login';
                                 </div>
                                 <div class="campo">
                                     <label>País:</label>
-                                    <select>
-                                        <option>España</option>
+                                    <select name="pais" id="pais" required>
+                                        <option value="">Selecciona país</option>
+                                    
+                                        <?php foreach ($paises as $pais): ?>
+                                            <option value="<?= $pais["id"] ?>" data-iso="<?= $pais["iso"] ?>">
+                                                <?= htmlspecialchars($pais["nombre"]) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    
                                     </select>
                                 </div>
                             </div>
                             <div class="fila_doble">
-                                <div class="campo">
+                                <div class="campo" id="campo_provincia">
                                     <label>Provincia:</label>
-                                    <select>
-                                        <option>Madrid</option>
-                                    </select>
+                                    <input type="text" name="provincia" required>
                                 </div>
-                                <div class="campo">
+                                <div class="campo" id="campo_localidad">
                                     <label>Localidad:</label>
-                                    <select>
-                                        <option>Madrid</option>
-                                    </select>
+                                    <input type="text" name="localidad" required>
                                 </div>
                             </div>
 
@@ -130,6 +144,7 @@ $modo = $_GET['modo'] ?? 'login';
             </main>
         <?php endif; ?>
     </div>
+    <script src="../js/registro.js?v=2"></script>
 </body>
 
 </html>

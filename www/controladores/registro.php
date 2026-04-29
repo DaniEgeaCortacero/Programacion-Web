@@ -24,6 +24,10 @@ $clave2 = $_POST["clave2"];
 $nombre = trim($_POST["nombre"]);
 $apellidos = trim($_POST["apellidos"]);
 $fecha_nacimiento = $_POST["fecha_nacimiento"];
+$id_tipo_actividad = $_POST["tipo_actividad"];
+$id_pais = $_POST["pais"] ?? null;
+$id_provincia = $_POST["provincia"] ?? null;
+$id_localidad = $_POST["localidad"] ?? null;
 
 if ($clave !== $clave2) {
     echo "<script>
@@ -83,7 +87,7 @@ $sql = "INSERT INTO usuario (
             id_pais,
             id_rol,
             fecha_alta
-        ) VALUES (?, ?, ?, ?, ?, ?, NULL, NULL, NULL, NULL, ?, NOW())";
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
 $stmt = $mysqli->prepare($sql);
 
