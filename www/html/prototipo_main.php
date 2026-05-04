@@ -19,7 +19,7 @@
 
     <title>Prototipo web</title>
 
-    <link rel="stylesheet" href="../css/style_proto_main.css?v=7">
+    <link rel="stylesheet" href="../css/style_proto_main.css?v=10">
     <link rel="stylesheet" href="../css/style_proto_admin.css?v=8">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">

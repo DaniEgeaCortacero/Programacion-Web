@@ -73,7 +73,7 @@ $contrasena_hash = password_hash($clave, PASSWORD_DEFAULT);
 // Rol usuario normal
 $id_rol = 2;
 
-// De momento dejamos actividad/localidad/provincia/país como NULL
+
 $sql = "INSERT INTO usuario (
             usuario,
             correo,
@@ -96,13 +96,17 @@ if (!$stmt) {
 }
 
 $stmt->bind_param(
-    "ssssssi",
+    "ssssssiiiii",
     $usuario,
     $correo,
     $contrasena_hash,
     $nombre,
     $apellidos,
     $fecha_nacimiento,
+    $id_tipo_actividad,
+    $id_localidad,
+    $id_provincia,
+    $id_pais,
     $id_rol
 );
 

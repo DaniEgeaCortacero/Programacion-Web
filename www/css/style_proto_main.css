@@ -464,6 +464,9 @@ footer {
 
 
 /* ####################### PERFIL ####################### */
+#perfil_form {
+    display: contents;
+}
 
 .perfil{
     width: 100%;
@@ -485,6 +488,12 @@ footer {
     overflow: hidden;
 }
 
+.perfil_inner {
+    max-width: 760px;  
+    width: 100%;
+    margin: 0 auto;     
+    padding: 32px 28px 40px;
+}
 
 
 /* ################### HEADER  */
@@ -574,11 +583,12 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 18px;
+    margin-bottom: 36px;
 }
 
 .seccion_datos h2{
-    margin: 0;
-    padding-bottom: 10px;
+    margin: 0 0 10px;
+    padding-bottom: 12px;
     font-size: 20px;
     color: #222222;
     border-bottom: 1px solid #f0f0f0;
@@ -588,6 +598,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    row-gap: 26px;
 }
 
 .datos_item{
@@ -608,7 +619,9 @@ footer {
     color: #444444;
 }
 
-
+.mis_actividades{
+    margin-top: 12px;
+}
 
 /* ################### MODOS  */
 
