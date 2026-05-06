@@ -1,6 +1,7 @@
 <?php 
 require_once "../controladores/ver_perfil.php"; 
 require_once "../controladores/load_tipos_actividad.php";
+require_once "../controladores/load_actividad.php"
 ?>
 
 <section class="perfil">
