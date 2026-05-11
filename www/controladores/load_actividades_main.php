@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/db.php";
 
-$id_usuario = $_SESSION["id_usuario"];
+$id_usuario_actual = $_SESSION["id_usuario"];
 
 $sql = "SELECT 
             a.id,
@@ -11,13 +11,26 @@ $sql = "SELECT
             ta.nombre AS tipo_actividad,
             u.usuario
         FROM actividad a
-        JOIN usuario u ON a.id_usuario = u.id
-        JOIN tipo_actividad ta ON a.id_tipo_actividad = ta.id
-        WHERE a.id_usuario = ?
+
+        JOIN usuario u 
+            ON a.id_usuario = u.id
+
+        JOIN tipo_actividad ta 
+            ON a.id_tipo_actividad = ta.id
+
+        WHERE a.id_usuario = ? 
+        OR a.id_usuario IN (
+
+            SELECT id_amigo
+            FROM amistad
+            WHERE id_usuario = ?
+
+        )
+
         ORDER BY a.fecha_publicacion DESC";
 
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param("i", $id_usuario);
+$stmt->bind_param("ii", $id_usuario_actual, $id_usuario_actual);
 $stmt->execute();
 
 $resultado = $stmt->get_result();
@@ -81,8 +94,6 @@ while ($actividad = $resultado->fetch_assoc()) {
     $actividad["companeros"] = $companeros;
     $stmt_comp->close();
 
-    $actividades[] = $actividad;
-
     /* ################ APLAUSOS ################ */
 
     // Total aplausos
@@ -114,14 +125,16 @@ while ($actividad = $resultado->fetch_assoc()) {
     ";
 
     $stmt_mio = $mysqli->prepare($sql_mio);
-    $stmt_mio->bind_param("ii", $id_actividad, $id_usuario);
+    $stmt_mio->bind_param("ii", $id_actividad, $id_usuario_actual);
     $stmt_mio->execute();
 
     $res_mio = $stmt_mio->get_result();
 
     $actividad["mi_aplauso"] = ($res_mio->num_rows > 0);
 
-    $stmt_mio->close();    
+    $stmt_mio->close(); 
+    
+    $actividades[] = $actividad;
 }
 
 $stmt->close();

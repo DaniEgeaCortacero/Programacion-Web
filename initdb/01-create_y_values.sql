@@ -149,9 +149,17 @@ CREATE TABLE actividad (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT NOT NULL,
     titulo VARCHAR(150) NOT NULL,
+    descripcion TEXT NULL,
     id_tipo_actividad INT NOT NULL,
-    archivo_gpx VARCHAR(255) NULL,
+
+    fecha_evento DATETIME NULL,
     fecha_publicacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    id_pais INT NULL,
+    id_provincia SMALLINT UNSIGNED NULL,
+    id_localidad INT NULL,
+
+    archivo_gpx VARCHAR(255) NULL,
 
     CONSTRAINT fk_actividad_usuario
         FOREIGN KEY (id_usuario) REFERENCES usuario(id)
@@ -161,6 +169,21 @@ CREATE TABLE actividad (
     CONSTRAINT fk_actividad_tipo
         FOREIGN KEY (id_tipo_actividad) REFERENCES tipo_actividad(id)
         ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_actividad_pais
+        FOREIGN KEY (id_pais) REFERENCES pais(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_actividad_provincia
+        FOREIGN KEY (id_provincia) REFERENCES provincia(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_actividad_localidad
+        FOREIGN KEY (id_localidad) REFERENCES localidad(id)
+        ON DELETE SET NULL
         ON UPDATE CASCADE
 );
 

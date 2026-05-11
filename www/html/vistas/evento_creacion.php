@@ -1,3 +1,8 @@
+<?php
+require_once "../controladores/load_tipos_actividad.php";
+require_once "../controladores/load_paises.php";
+?>
+
 <div class="crear_evento_card">
 
     <div class="crear_evento_header">
@@ -10,11 +15,10 @@
             </div>
         </div>
 
-        <button class="btn_publicar_evento">Publicar evento</button>
     </div>
 
     <div class="crear_evento_body">
-        <form class="form_crear_evento" method="POST" action="" enctype="multipart/form-data">
+        <form id="form_crear_evento" class="form_crear_evento" method="POST" action="../controladores/crear_evento.php" enctype="multipart/form-data">
 
             <section class="seccion_evento">
                 <h2>Información general</h2>
@@ -22,24 +26,25 @@
                 <div class="grid_doble">
                     <div class="campo">
                         <label for="titulo">Título</label>
-                        <input type="text" id="titulo" name="titulo" placeholder="Título del evento">
+                        <input type="text" id="titulo" name="titulo" required>
                     </div>
 
                     <div class="campo">
                         <label for="tipo">Tipo de actividad</label>
-                        <select id="tipo" name="tipo">
+                        <select id="tipo" name="tipo" required>
                             <option value="">Selecciona una actividad</option>
-                            <option value="senderismo">Senderismo</option>
-                            <option value="ciclismo">Ciclismo</option>
-                            <option value="running">Running</option>
-                            <option value="gym">Gimnasio</option>
+                            <?php foreach ($tipos_actividad as $tipo): ?>
+                                <option value="<?= $tipo["id"] ?>">
+                                    <?= htmlspecialchars($tipo["nombre"]) ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
 
                 <div class="campo">
                     <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" name="descripcion" rows="4" placeholder="Describe la actividad"></textarea>
+                    <textarea id="descripcion" name="descripcion" rows="4"></textarea>
                 </div>
             </section>
 
@@ -49,7 +54,7 @@
                 <div class="grid_doble">
                     <div class="campo">
                         <label for="fecha">Fecha</label>
-                        <input type="date" id="fecha" name="fecha">
+                        <input type="date" id="fecha" name="fecha" required>
                     </div>
 
                     <div class="campo">
@@ -58,15 +63,28 @@
                     </div>
                 </div>
 
+                <div class="campo">
+                    <label>País</label>
+                    <select name="pais" id="pais_evento" required>
+                        <option value="">Selecciona país</option>
+
+                        <?php foreach ($paises as $pais): ?>
+                            <option value="<?= $pais["id"] ?>" data-iso="<?= $pais["iso"] ?>">
+                                <?= htmlspecialchars($pais["nombre"]) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
                 <div class="grid_doble">
-                    <div class="campo">
-                        <label for="localidad">Localidad</label>
-                        <input type="text" id="localidad" name="localidad" placeholder="Localidad">
+                    <div class="campo" id="campo_provincia_evento">
+                        <label>Provincia</label>
+                        <input type="text" name="provincia" required>
                     </div>
 
-                    <div class="campo">
-                        <label for="ciudad">Ciudad</label>
-                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad">
+                    <div class="campo" id="campo_localidad_evento">
+                        <label>Localidad</label>
+                        <input type="text" name="localidad" required>
                     </div>
                 </div>
 
@@ -74,22 +92,14 @@
                     <label for="ruta">Ruta / mapa</label>
                     <input class="input_gpx" type="file" id="ruta" name="gpx_ruta" accept=".gpx">
                 </div>
-
-                <div class="preview_ruta" id="preview_ruta">
-                    <h3>Vista previa de la ruta</h3>
-                    <div id="mapa_preview"></div>
-                    <p id="mensaje_preview">Selecciona un archivo GPX para ver la ruta en el mapa.</p>
-                </div>
-
             </section>
 
             <section class="seccion_evento">
                 <h2>Detalles adicionales</h2>
 
-
                 <div class="campo">
                     <label for="imagenes">Imágenes</label>
-                    <input type="file" id="imagenes" name="imagenes[]" multiple>
+                    <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple>
                 </div>
             </section>
 

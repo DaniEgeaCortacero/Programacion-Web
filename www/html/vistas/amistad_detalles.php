@@ -1,3 +1,7 @@
+<?php 
+require_once "../controladores/load_actividades_usuario.php";
+?>
+
 <section class="perfil">
     <div class="perfil_card">
 
@@ -41,8 +45,9 @@
                 <h2>Actividades publicadas</h2>
 
                 <div class="datos_actividad">
-                    <?php include("evento.php"); ?>
-                    <?php include("evento.php"); ?>
+                    <?php foreach ($actividades as $actividad): ?>
+                        <?php include("evento.php"); ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
 

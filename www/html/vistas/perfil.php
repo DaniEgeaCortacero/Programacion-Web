@@ -1,7 +1,7 @@
 <?php 
 require_once "../controladores/ver_perfil.php"; 
 require_once "../controladores/load_tipos_actividad.php";
-require_once "../controladores/load_actividad.php"
+require_once "../controladores/load_mis_actividades.php";
 ?>
 
 <section class="perfil">
@@ -135,8 +135,9 @@ require_once "../controladores/load_actividad.php"
                     <h2>Mis actividades</h2>
 
                     <div class="datos_actividad">
-                        <?php include("evento.php"); ?>
-                        <?php include("evento.php"); ?>
+                        <?php foreach ($actividades as $actividad): ?>
+                            <?php include("evento.php"); ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

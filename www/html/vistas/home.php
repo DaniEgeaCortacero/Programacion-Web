@@ -1,3 +1,7 @@
+<?php
+require_once "../controladores/load_actividades_main.php";
+?>
+
 <h1 class="titulo_home">Tablón de Actividades</h1>
 
 <div class="evento">
@@ -56,11 +60,9 @@
     </div>
 </div>
 
-
-<?php  
-include("evento.php");
-include("evento.php");
-?>
+<?php foreach ($actividades as $actividad): ?>
+    <?php include("evento.php"); ?>
+<?php endforeach; ?>
 
 <?php  
 include("../include/modal.php");
