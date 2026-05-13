@@ -1,13 +1,21 @@
 <?php
 require_once "../controladores/load_imagenes_actividad.php";
+if (!isset($actividad) || !is_array($actividad)) {
+    return;
+}
 
-$total_imagenes = count($actividad["imagenes"]);
-$imagenes_visibles = array_slice($actividad["imagenes"], 0, 2);
 
-$n_companeros = count($actividad["companeros"]);
+$tipo_actividad = htmlspecialchars($actividad["tipo_actividad"] ?? "Sin tipo");
+$titulo = htmlspecialchars($actividad["titulo"] ?? "Sin título");
+$usuario = htmlspecialchars($actividad["usuario"] ?? "Usuario desconocido");
+$fecha_publicacion = htmlspecialchars($actividad["fecha_publicacion"] ?? "");
 
-$n_aplausos = intval($actividad["n_aplausos"]);
-$mi_aplauso = boolval($actividad["mi_aplauso"]);
+$total_imagenes = count($actividad["imagenes"] ?? []);
+$imagenes_visibles = array_slice($actividad["imagenes"] ?? [], 0, 2);
+
+$n_companeros = count($actividad["companeros"] ?? []);
+$n_aplausos = intval($actividad["n_aplausos"] ?? 0);
+$mi_aplauso = boolval($actividad["mi_aplauso"] ?? false);
 ?>
 
 <div class="evento">
@@ -18,16 +26,16 @@ $mi_aplauso = boolval($actividad["mi_aplauso"]);
 
     <div class="evento_info">
         <p class="tipo_evento">
-            <?= htmlspecialchars($actividades["tipo_actividad"]) ?>
+            <?= htmlspecialchars($tipo_actividad) ?>
         </p>
 
         <h3 class="titulo_evento">
-            <?= htmlspecialchars($actividades["titulo"]) ?>
+            <?= htmlspecialchars($titulo) ?>
         </h3>
 
         <p class="evento_meta">
             👤 Publicado por 
-            <?= htmlspecialchars($actividades["usuario"]) ?>
+            <?= htmlspecialchars($usuario) ?>
         </p>
 
         <p class="evento_meta">
@@ -38,7 +46,7 @@ $mi_aplauso = boolval($actividad["mi_aplauso"]);
             👥 <?= $n_companeros ?> compañeros
         </p>
         <p class="evento_meta">
-            📅 <?= htmlspecialchars($actividades["fecha_publicacion"]) ?>
+            📅 <?= htmlspecialchars($fecha_publicacion) ?>
         </p>
     </div>
 

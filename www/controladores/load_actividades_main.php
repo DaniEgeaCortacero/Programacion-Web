@@ -99,7 +99,7 @@ while ($actividad = $resultado->fetch_assoc()) {
     // Total aplausos
     $sql_aplausos = "
     SELECT COUNT(*) AS total
-    FROM actividad_aplauso
+    FROM aplauso
     WHERE id_actividad = ?
     ";
 
@@ -117,11 +117,11 @@ while ($actividad = $resultado->fetch_assoc()) {
 
     // Saber si el usuario actual ya dio aplauso
     $sql_mio = "
-    SELECT id
-    FROM actividad_aplauso
-    WHERE id_actividad = ?
-    AND id_usuario = ?
-    LIMIT 1
+        SELECT id_usuario
+        FROM aplauso
+        WHERE id_actividad = ?
+        AND id_usuario = ?
+        LIMIT 1
     ";
 
     $stmt_mio = $mysqli->prepare($sql_mio);

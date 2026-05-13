@@ -3,7 +3,7 @@ require_once "../controladores/load_actividades_main.php";
 ?>
 
 <h1 class="titulo_home">Tablón de Actividades</h1>
-
+<!--
 <div class="evento">
 
     <div>
@@ -59,6 +59,7 @@ require_once "../controladores/load_actividades_main.php";
         <button class="btn_evento ver" onclick="abrirEvento('../Prueba2.gpx')">Ver más</button>
     </div>
 </div>
+-->
 
 <?php foreach ($actividades as $actividad): ?>
     <?php include("evento.php"); ?>
@@ -67,7 +68,3 @@ require_once "../controladores/load_actividades_main.php";
 <?php  
 include("../include/modal.php");
 ?>
-
-
-<button id="prueba_btn">Probar JS</button>
-<p id="out"></p>

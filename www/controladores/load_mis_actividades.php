@@ -6,13 +6,21 @@ $id_usuario = $_SESSION["id_usuario"];
 $sql = "SELECT 
             a.id,
             a.titulo,
+            a.descripcion,
             a.archivo_gpx,
+            a.fecha_evento,
             a.fecha_publicacion,
             ta.nombre AS tipo_actividad,
-            u.usuario
+            u.usuario,
+            p.nombre AS pais,
+            pr.nombre AS provincia,
+            l.nombre AS localidad
         FROM actividad a
         JOIN usuario u ON a.id_usuario = u.id
         JOIN tipo_actividad ta ON a.id_tipo_actividad = ta.id
+        LEFT JOIN pais p ON a.id_pais = p.id
+        LEFT JOIN provincia pr ON a.id_provincia = pr.id
+        LEFT JOIN localidad l ON a.id_localidad = l.id
         WHERE a.id_usuario = ?
         ORDER BY a.fecha_publicacion DESC";
 
@@ -86,7 +94,7 @@ while ($actividad = $resultado->fetch_assoc()) {
     // Total aplausos
     $sql_aplausos = "
     SELECT COUNT(*) AS total
-    FROM actividad_aplauso
+    FROM aplauso
     WHERE id_actividad = ?
     ";
 
@@ -104,7 +112,7 @@ while ($actividad = $resultado->fetch_assoc()) {
 
     // Saber si el usuario actual ya dio aplauso
     $sql_mio = "
-    SELECT id
+    SELECT 1
     FROM aplauso
     WHERE id_actividad = ?
     AND id_usuario = ?
