@@ -1,6 +1,12 @@
+CREATE DATABASE IF NOT EXISTS practica
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE practica;
+
 SET NAMES utf8mb4;
 SET CHARACTER SET utf8mb4;
-
+SET collation_connection = 'utf8mb4_unicode_ci';
 -- =========================================================
 -- TABLAS AUXILIARES
 -- =========================================================

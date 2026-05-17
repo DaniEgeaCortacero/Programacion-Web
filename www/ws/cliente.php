@@ -131,7 +131,9 @@
     error_reporting(E_ALL & ~E_DEPRECATED);
 
     // Inicializamos el cliente
-    $cliente = new nusoap_client('http://localhost/ws/servidor.php?wsdl', 'wsdl');
+    $host = $_SERVER['SERVER_NAME'];
+    $url = "http://" . $host . "/ws/servidor.php?wsdl";
+    $cliente = new nusoap_client($url, 'wsdl');
     $cliente->soap_defencoding = 'UTF-8';
     $cliente->decode_utf8 = FALSE;
 
