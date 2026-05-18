@@ -200,6 +200,7 @@ CREATE TABLE actividad (
 CREATE TABLE amistad (
     id_usuario INT NOT NULL,
     id_amigo INT NOT NULL,
+    estado ENUM('pendiente', 'aceptada') NOT NULL DEFAULT 'pendiente',
     fecha_alta DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     PRIMARY KEY (id_usuario, id_amigo),

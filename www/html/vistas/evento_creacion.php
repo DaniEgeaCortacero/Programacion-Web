@@ -1,6 +1,7 @@
 <?php
 require_once "../controladores/load_tipos_actividad.php";
 require_once "../controladores/load_paises.php";
+require_once "../controladores/load_amistades.php";
 ?>
 
 <div class="crear_evento_card">
@@ -18,7 +19,8 @@ require_once "../controladores/load_paises.php";
     </div>
 
     <div class="crear_evento_body">
-        <form id="form_crear_evento" class="form_crear_evento" method="POST" action="../controladores/crear_evento.php" enctype="multipart/form-data">
+        <form id="form_crear_evento" class="form_crear_evento" method="POST" action="../controladores/crear_evento.php"
+            enctype="multipart/form-data">
 
             <section class="seccion_evento">
                 <h2>Información general</h2>
@@ -101,6 +103,44 @@ require_once "../controladores/load_paises.php";
                     <label for="imagenes">Imágenes</label>
                     <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple>
                 </div>
+
+                <div class="campo">
+                    <label>Compañeros de actividad</label>
+
+                    <div class="lista_companeros_creacion">
+
+                        <?php if (empty($amistades)): ?>
+
+                            <p>No tienes amistades añadidas.</p>
+
+                        <?php else: ?>
+
+                            <?php foreach ($amistades as $amigo): ?>
+
+                                <label class="item_companero_creacion">
+
+                                    <input type="checkbox" name="companeros[]" value="<?= $amigo["id"] ?>"
+                                    >
+
+                                    <img src="<?= !empty($amigo["imagen_perfil"])
+                                        ? htmlspecialchars($amigo["imagen_perfil"])
+                                        : '../img/default.png' ?>"
+                                    alt=""
+                                    >
+
+                                    <span>
+                                        <?= htmlspecialchars($amigo["usuario"]) ?>
+                                    </span>
+
+                                </label>
+
+                            <?php endforeach; ?>
+
+                        <?php endif; ?>
+
+                    </div>
+                </div>
+
             </section>
 
             <div class="acciones_formulario">
