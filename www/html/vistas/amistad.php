@@ -1,3 +1,5 @@
+<?php require_once "../controladores/load_solicitudes_amistad.php"; ?>
+
 <?php if (empty($amistades)): ?>
 
     <div class="sin_amigos">
@@ -24,5 +26,23 @@
             </div>
         </a>
     <?php endforeach; ?>
+
+<?php endif; ?>
+
+
+<?php if (!empty($solicitudes)): ?>
+
+    <section class="panel_solicitudes_amistad">
+        <h2>Solicitudes pendientes</h2>
+
+        <div class="lista_solicitudes_amistad">
+            <?php foreach ($solicitudes as $u): ?>
+                <?php 
+                    $modo_usuario = "solicitud";
+                    include "usuario_encontrado.php"; 
+                ?>
+            <?php endforeach; ?>
+        </div>
+    </section>
 
 <?php endif; ?>

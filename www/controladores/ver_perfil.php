@@ -1,7 +1,26 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once __DIR__ . "/db.php";
 
-$id_usuario = $_SESSION["id_usuario"];
+if (!isset($_SESSION["id_usuario"])) {
+    exit("Debes iniciar sesión");
+}
+
+$id_usuario_actual = intval($_SESSION["id_usuario"]);
+
+/*
+    Si viene id por GET, vemos el perfil de ese usuario.
+    Si no viene id, vemos mi propio perfil.
+*/
+$id_usuario = isset($_GET["id"]) ? intval($_GET["id"]) : $id_usuario_actual;
+
+$perfil = null;
+$es_mi_perfil = ($id_usuario === $id_usuario_actual);
+$es_amigo = false;
+$estado_relacion = "ninguna";
 
 $sql = "SELECT 
             u.id,
@@ -39,4 +58,59 @@ $resultado = $stmt->get_result();
 $perfil = $resultado->fetch_assoc();
 
 $stmt->close();
+
+if (!$perfil) {
+    return;
+}
+
+/*
+    Comprobar relación de amistad
+*/
+if ($es_mi_perfil) {
+    $es_amigo = true;
+    $estado_relacion = "propio";
+} else {
+    $sql = "SELECT id_usuario, id_amigo, estado
+            FROM amistad
+            WHERE 
+                (id_usuario = ? AND id_amigo = ?)
+                OR
+                (id_usuario = ? AND id_amigo = ?)";
+
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param(
+        "iiii",
+        $id_usuario_actual,
+        $id_usuario,
+        $id_usuario,
+        $id_usuario_actual
+    );
+    $stmt->execute();
+
+    $res = $stmt->get_result();
+
+    while ($rel = $res->fetch_assoc()) {
+        if ($rel["estado"] === "aceptada") {
+            $es_amigo = true;
+            $estado_relacion = "aceptada";
+            break;
+        }
+
+        if (
+            intval($rel["id_usuario"]) === $id_usuario_actual &&
+            $rel["estado"] === "pendiente"
+        ) {
+            $estado_relacion = "pendiente_enviada";
+        }
+
+        if (
+            intval($rel["id_amigo"]) === $id_usuario_actual &&
+            $rel["estado"] === "pendiente"
+        ) {
+            $estado_relacion = "pendiente_recibida";
+        }
+    }
+
+    $stmt->close();
+}
 ?>

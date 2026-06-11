@@ -85,6 +85,46 @@ $stmt->execute();
 $id_actividad = $stmt->insert_id;
 $stmt->close();
 
+/* COMPAÑEROS */
+$companeros = $_POST["companeros"] ?? [];
+
+if (!is_array($companeros)) {
+    $companeros = [];
+}
+
+$sql_companero = "INSERT IGNORE INTO actividad_companero 
+                  (id_actividad, id_usuario)
+                  SELECT ?, u.id
+                  FROM usuario u
+                  JOIN amistad a 
+                    ON a.id_amigo = u.id
+                    AND a.id_usuario = ?
+                    AND a.estado = 'aceptada'
+                  WHERE u.id = ?";
+
+$stmt_companero = $mysqli->prepare($sql_companero);
+
+foreach ($companeros as $id_companero) {
+    $id_companero = intval($id_companero);
+
+    if ($id_companero <= 0 || $id_companero == $id_usuario) {
+        continue;
+    }
+
+    $stmt_companero->bind_param(
+        "iii",
+        $id_actividad,
+        $id_usuario,
+        $id_companero
+    );
+
+    $stmt_companero->execute();
+}
+
+$stmt_companero->close();
+
+/* IMÁGENES */
+
 /* IMÁGENES */
 if (isset($_FILES["imagenes"])) {
     $total = count($_FILES["imagenes"]["name"]);

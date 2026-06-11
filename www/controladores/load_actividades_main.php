@@ -1,7 +1,20 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once __DIR__ . "/db.php";
 
-$id_usuario_actual = $_SESSION["id_usuario"];
+$id_usuario_actual = $_SESSION["id_usuario"] ?? null;
+
+if (!$id_usuario_actual) {
+    $actividades = [];
+    return;
+}
+
+$pagina = intval($_GET["pagina"] ?? 0);
+$limite = 10;
+$offset = $pagina * $limite;
 
 $sql = "SELECT 
             a.id,
@@ -11,26 +24,26 @@ $sql = "SELECT
             ta.nombre AS tipo_actividad,
             u.usuario
         FROM actividad a
-
         JOIN usuario u 
             ON a.id_usuario = u.id
-
         JOIN tipo_actividad ta 
             ON a.id_tipo_actividad = ta.id
-
-        WHERE a.id_usuario = ? 
-        OR a.id_usuario IN (
-
-            SELECT id_amigo
-            FROM amistad
-            WHERE id_usuario = ?
-
-        )
-
-        ORDER BY a.fecha_publicacion DESC";
+        WHERE 
+            u.fecha_baja IS NULL
+            AND (
+                a.id_usuario = ?
+                OR a.id_usuario IN (
+                    SELECT id_amigo
+                    FROM amistad
+                    WHERE id_usuario = ?
+                    AND estado = 'aceptada'
+                )
+            )
+        ORDER BY a.fecha_publicacion DESC
+        LIMIT ? OFFSET ?";
 
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param("ii", $id_usuario_actual, $id_usuario_actual);
+$stmt->bind_param("iiii", $id_usuario_actual, $id_usuario_actual, $limite, $offset);
 $stmt->execute();
 
 $resultado = $stmt->get_result();
@@ -39,9 +52,9 @@ $actividades = [];
 
 while ($actividad = $resultado->fetch_assoc()) {
 
-    /* ################ IMAGENES ################ */
-
     $id_actividad = $actividad["id"];
+
+    /* ################ IMAGENES ################ */
 
     $sql_img = "SELECT 
                     i.id,
@@ -96,12 +109,9 @@ while ($actividad = $resultado->fetch_assoc()) {
 
     /* ################ APLAUSOS ################ */
 
-    // Total aplausos
-    $sql_aplausos = "
-    SELECT COUNT(*) AS total
-    FROM aplauso
-    WHERE id_actividad = ?
-    ";
+    $sql_aplausos = "SELECT COUNT(*) AS total
+                     FROM aplauso
+                     WHERE id_actividad = ?";
 
     $stmt_aplausos = $mysqli->prepare($sql_aplausos);
     $stmt_aplausos->bind_param("i", $id_actividad);
@@ -114,15 +124,13 @@ while ($actividad = $resultado->fetch_assoc()) {
 
     $stmt_aplausos->close();
 
+    /* ################ MI APLAUSO ################ */
 
-    // Saber si el usuario actual ya dio aplauso
-    $sql_mio = "
-        SELECT id_usuario
-        FROM aplauso
-        WHERE id_actividad = ?
-        AND id_usuario = ?
-        LIMIT 1
-    ";
+    $sql_mio = "SELECT id_usuario
+                FROM aplauso
+                WHERE id_actividad = ?
+                AND id_usuario = ?
+                LIMIT 1";
 
     $stmt_mio = $mysqli->prepare($sql_mio);
     $stmt_mio->bind_param("ii", $id_actividad, $id_usuario_actual);
@@ -132,8 +140,8 @@ while ($actividad = $resultado->fetch_assoc()) {
 
     $actividad["mi_aplauso"] = ($res_mio->num_rows > 0);
 
-    $stmt_mio->close(); 
-    
+    $stmt_mio->close();
+
     $actividades[] = $actividad;
 }
 

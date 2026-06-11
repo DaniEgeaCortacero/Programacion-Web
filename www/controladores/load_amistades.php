@@ -18,6 +18,7 @@ $sql = "SELECT
         LEFT JOIN imagen i 
             ON i.id_usuario = u.id AND i.es_perfil = 1
         WHERE a.id_usuario = ?
+        AND a.estado = 'aceptada'
         AND u.fecha_baja IS NULL";
 
 $stmt = $mysqli->prepare($sql);

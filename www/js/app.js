@@ -1,6 +1,10 @@
 
 let mapaModal = null;
 let capaGpxModal = null;
+let actividadModalActual = null;
+
+
+/* ####################### FUNCIONES GPX ACTIVIDADES REDUCIDAS ####################### */
 
 function crearMapaCard(idMapa, rutaGPX){
 
@@ -37,51 +41,277 @@ function crearMapaCard(idMapa, rutaGPX){
 }
 
 
+function inicializarMapasCards() {
+    const mapas = document.querySelectorAll(".mapa_gpx");
+
+    mapas.forEach((mapaDiv) => {
+        if (mapaDiv.dataset.inicializado === "1") {
+            return;
+        }
+
+        const rutaGPX = mapaDiv.dataset.gpx;
+
+        if (!rutaGPX) {
+            return;
+        }
+
+        mapaDiv.dataset.inicializado = "1";
+
+        crearMapaCard(mapaDiv.id, rutaGPX);
+    });
+}
+
+
 /* ####################### ACTIVIDAD - MODAL ####################### */
 
-function abrirEvento(rutaGPX) {
-  const modal = document.getElementById("modal_evento");
-  if (modal) {
+
+function abrirEvento(idActividad) {
+    fetch("../controladores/load_actividad_detalle.php?id=" + encodeURIComponent(idActividad), {
+        cache: "no-store"
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.ok) {
+            alert(data.mensaje || "No se pudo cargar la actividad");
+            return;
+        }
+
+        pintarModalEvento(data);
+    })
+    .catch(error => {
+        console.error("Error cargando evento:", error);
+    });
+}
+
+function pintarModalEvento(data) {
+    const modal = document.getElementById("modal_evento");
+    const modalDescripcion = document.getElementById("modal_descripcion");
+    const modalTipo = document.getElementById("modal_tipo");
+    const modalTitulo = document.getElementById("modal_titulo");
+    const modalImagenes = document.getElementById("modal_imagenes");
+    const modalCompaneros = document.getElementById("modal_companeros");
+    const modalPublicador = document.getElementById("modal_publicador");
+    const modalFecha = document.getElementById("modal_fecha");
+    const modalFechaEvento = document.getElementById("modal_fecha_evento");
+    const modalFooter = document.getElementById("modal_footer");
+
+    const actividad = data.actividad;
+
+    if (modalFechaEvento) {
+        modalFechaEvento.innerHTML = `
+            <strong>Fecha del evento:</strong>
+            <span>${actividad.fecha_evento || "Sin fecha del evento"}</span>
+        `;
+    }
+
+    if (modalPublicador) {
+        modalPublicador.innerHTML = `
+            <div class="modal_usuario_chip">
+                <img 
+                    src="${actividad.imagen_publicador || "../img/default.png"}"
+                    alt="${actividad.usuario_publicador || "Usuario"}">
+
+                <span>
+                    Publicado por 
+                    <strong>@${actividad.usuario_publicador || "usuario"}</strong>
+                </span>
+            </div>
+        `;
+    }
+
+    if (modalFecha) {
+        modalFecha.innerHTML = `
+            <strong>Fecha de publicación:</strong>
+            <span>${actividad.fecha_publicacion || "Sin fecha"}</span>
+        `;
+    }
+
+    if (modalDescripcion) {
+        modalDescripcion.innerHTML = `
+            <strong>Descripción:</strong>
+            <p>${actividad.descripcion || "Sin descripción"}</p>
+        `;
+    }
+
+    if (!modal) {
+        console.error("No existe #modal_evento");
+        return;
+    }
+
     modal.classList.add("activo");
-  }
 
-  if (!mapaModal) {
-    mapaModal = L.map("mapa_modal");
+    if (modalTipo) {
+        modalTipo.textContent = actividad.tipo_actividad;
+    }
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "© OpenStreetMap"
-    }).addTo(mapaModal);
+    if (modalTitulo) {
+        modalTitulo.textContent = actividad.titulo;
+    }
 
-    mapaModal.setView([40.4168, -3.7038], 6);
-  }
+    if (modalImagenes) {
+        if (!data.imagenes || data.imagenes.length === 0) {
+            modalImagenes.innerHTML = "<p>No hay imágenes.</p>";
+        } else {
+            const rutas = data.imagenes.map(img => img.ruta);
 
-  if (capaGpxModal) {
-    mapaModal.removeLayer(capaGpxModal);
-  }
+            modalImagenes.innerHTML = data.imagenes.map((img, index) => `
+                <img
+                    src="${img.ruta}"
+                    class="modal_evento_img"
+                    alt="${img.nombre || "Imagen"}"
+                    onclick='abrirGaleriaActividad(${JSON.stringify(rutas)}, ${index})'
+                >
+            `).join("");
+        }
+    }
 
-  capaGpxModal = new L.GPX(rutaGPX, {
-    async: true,
-    marker_options: {
+    if (modalCompaneros) {
+        if (!data.companeros || data.companeros.length === 0) {
+            modalCompaneros.innerHTML = "<p>No hay compañeros.</p>";
+        } else {
+            modalCompaneros.innerHTML = data.companeros.map(c => `
+                <div class="modal_companero_item">
+                    <img 
+                        src="${c.imagen_perfil || "../img/default.png"}"
+                        class="modal_companero_img"
+                        alt="${c.usuario}">
+
+                    <div>
+                        <strong>@${c.usuario}</strong>
+                        <span>${(c.nombre || "") + " " + (c.apellidos || "")}</span>
+                    </div>
+                </div>
+            `).join("");
+        }
+    }
+
+    if (modalFooter) {
+        modalFooter.innerHTML = `
+            <button 
+                type="button"
+                class="btn_aplauso ${data.mi_aplauso ? "activo" : ""}"
+                data-id-actividad="${actividad.id}"
+                onclick="toggleAplauso(this)">
+                👏 <span>${data.n_aplausos}</span>
+            </button>
+
+            <div class="botones_evento">
+                <button class="btn_evento editar" onclick="editarEvento()">Editar</button>
+            </div>
+        `;
+    }
+
+    cargarMapaModal(actividad.archivo_gpx);
+}
+
+
+function cargarMapaModal(rutaGPX) {
+    if (!rutaGPX) {
+        return;
+    }
+
+    if (!mapaModal) {
+        mapaModal = L.map("mapa_modal");
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "© OpenStreetMap"
+        }).addTo(mapaModal);
+
+        mapaModal.setView([40.4168, -3.7038], 6);
+    }
+
+    if (capaGpxModal) {
+        mapaModal.removeLayer(capaGpxModal);
+    }
+
+    capaGpxModal = new L.GPX(rutaGPX, {
+        async: true,
+        marker_options: {
             startIconUrl: null,
             endIconUrl: null,
             shadowUrl: null
-    },
-    polyline_options: {
-      color: "red",
-      opacity: 0.75,
-      weight: 4,
-      lineCap: "round"
-    }
-  }).on("loaded", function(e) {
-    mapaModal.fitBounds(e.target.getBounds(), {
-      padding: [20, 20]
-    });
-  }).addTo(mapaModal);
+        },
+        polyline_options: {
+            color: "red",
+            opacity: 0.75,
+            weight: 4,
+            lineCap: "round"
+        }
+    }).on("loaded", function(e) {
+        mapaModal.fitBounds(e.target.getBounds(), {
+            padding: [20, 20]
+        });
+    }).addTo(mapaModal);
 
-  setTimeout(() => {
-    mapaModal.invalidateSize();
-  }, 150);
+    setTimeout(() => {
+        mapaModal.invalidateSize();
+    }, 150);
 }
+
+
+
+
+
+
+
+/* ####################### EVENTOS - IMAGENES - MODAL ####################### */
+
+let galeriaImagenes = [];
+let galeriaIndice = 0;
+
+function abrirGaleriaActividad(imagenes, indiceInicial = 0) {
+    galeriaImagenes = imagenes;
+    galeriaIndice = indiceInicial;
+
+    const modal = document.getElementById("modal_galeria");
+
+    if (!modal || galeriaImagenes.length === 0) {
+        return;
+    }
+
+    actualizarGaleriaActividad();
+
+    modal.classList.add("activo");
+}
+
+function actualizarGaleriaActividad() {
+    const img = document.getElementById("modal_galeria_img");
+    const contador = document.getElementById("modal_galeria_contador");
+
+    if (!img || galeriaImagenes.length === 0) {
+        return;
+    }
+
+    if (galeriaIndice < 0) {
+        galeriaIndice = galeriaImagenes.length - 1;
+    }
+
+    if (galeriaIndice >= galeriaImagenes.length) {
+        galeriaIndice = 0;
+    }
+
+    img.src = galeriaImagenes[galeriaIndice];
+
+    if (contador) {
+        contador.textContent = `${galeriaIndice + 1} / ${galeriaImagenes.length}`;
+    }
+}
+
+function moverGaleriaActividad(direccion) {
+    galeriaIndice += direccion;
+    actualizarGaleriaActividad();
+}
+
+function cerrarGaleriaActividad() {
+    const modal = document.getElementById("modal_galeria");
+
+    if (modal) {
+        modal.classList.remove("activo");
+    }
+}
+
+
+
 
 /* ####################### USUARIOS - IMAGENES - MODAL ####################### */
 
@@ -179,9 +409,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+
+  // Abrir modal EVENTO - IMAGENES
+
+  const modalGaleria = document.getElementById("modal_galeria");
+
+  if (modalGaleria) {
+      modalGaleria.addEventListener("click", (e) => {
+          if (e.target === modalGaleria) {
+              cerrarGaleriaActividad();
+          }
+      });
+  }
+
+
   
 
-  // Cerrar modal
+  // Cerrar modal Evento
   const cerrarModal = document.getElementById("cerrar_modal");
   const modalEvento = document.getElementById("modal_evento");
 
@@ -269,14 +513,13 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       lector.readAsText(archivo);
+
+
     });
   }
 
-  crearMapaCard("map_card_1", "../Prueba.gpx");
-  crearMapaCard("map_card_2", "../Prueba2.gpx");
-
-  setTimeout(() => {      /* Reajusta el mapa */
-    map.invalidateSize();
-  }, 50);
+  if (typeof inicializarMapasCards === "function") {
+    inicializarMapasCards();
+  }
 
 });

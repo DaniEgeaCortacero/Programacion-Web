@@ -4,6 +4,13 @@ require_once __DIR__ . "/db.php";
 $id_usuario = intval($_GET["id"] ?? 0);
 $id_usuario_actual = $_SESSION["id_usuario"] ?? 0;
 
+/*
+    Si $solo_ultima existe y es true, cargamos solo una actividad.
+    Si no, cargamos todas.
+*/
+$solo_ultima = $solo_ultima ?? false;
+$limit = $solo_ultima ? " LIMIT 1" : "";
+
 $sql = "SELECT 
             a.id,
             a.titulo,
@@ -15,7 +22,8 @@ $sql = "SELECT
         JOIN usuario u ON a.id_usuario = u.id
         JOIN tipo_actividad ta ON a.id_tipo_actividad = ta.id
         WHERE a.id_usuario = ?
-        ORDER BY a.fecha_publicacion DESC";
+        ORDER BY a.fecha_publicacion DESC
+        $limit";
 
 $stmt = $mysqli->prepare($sql);
 $stmt->bind_param("i", $id_usuario);
@@ -105,7 +113,7 @@ while ($actividad = $resultado->fetch_assoc()) {
 
     // Saber si el usuario actual ya dio aplauso
     $sql_mio = "
-    SELECT id
+    SELECT id_usuario
     FROM aplauso
     WHERE id_actividad = ?
     AND id_usuario = ?

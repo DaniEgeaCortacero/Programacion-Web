@@ -9,7 +9,7 @@ inputBusqueda.addEventListener("keyup", () => {
         return;
     }
 
-    fetch("../controladores/buscar_usuarios.php?busqueda=" + encodeURIComponent(texto))
+    fetch("/controladores/buscar_usuarios.php?busqueda=" + encodeURIComponent(texto))
         .then(res => res.text())
         .then(data => {
             resultados.innerHTML = data;
@@ -17,7 +17,7 @@ inputBusqueda.addEventListener("keyup", () => {
 });
 
 function agregarAmigo(idAmigo) {
-    fetch("../controladores/agregar_amistad.php", {
+    fetch("/controladores/agregar_amistad.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -27,5 +27,38 @@ function agregarAmigo(idAmigo) {
     .then(res => res.text())
     .then(data => {
         alert(data);
+        inputBusqueda.dispatchEvent(new Event("keyup"));
     });
+}
+
+function aceptarAmistad(idUsuario) {
+    fetch("../controladores/aceptar_amistad.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "id_usuario=" + encodeURIComponent(idUsuario)
+    })
+    .then(res => res.text())
+    .then(data => {
+        alert(data);
+        location.reload();
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+function rechazarAmistad(idUsuario) {
+    fetch("../controladores/rechazar_amistad.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "id_usuario=" + encodeURIComponent(idUsuario)
+    })
+    .then(res => res.text())
+    .then(data => {
+        alert(data);
+        location.reload();
+    })
+    .catch(error => console.error("Error:", error));
 }

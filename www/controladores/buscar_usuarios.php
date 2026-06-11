@@ -1,37 +1,60 @@
 <?php
 session_start();
-require_once "../modelo/conexion.php";
+require_once __DIR__ . "/db.php";
 
-$id_usuario_actual = $_SESSION["id_usuario"];
+if (!isset($_SESSION["id_usuario"])) {
+    exit;
+}
+
+$id_usuario_actual = intval($_SESSION["id_usuario"]);
 $busqueda = $_GET["busqueda"] ?? "";
 
-$sql = "SELECT id, usuario, nombre, apellidos
-        FROM usuario
+if (strlen(trim($busqueda)) < 2) {
+    exit;
+}
+
+$sql = "SELECT 
+            u.id,
+            u.usuario,
+            u.nombre,
+            u.apellidos,
+            i.ruta AS foto_perfil
+        FROM usuario u
+        LEFT JOIN imagen i 
+            ON i.id_usuario = u.id
+            AND i.es_perfil = 1
         WHERE 
-            (usuario LIKE ? OR nombre LIKE ? OR apellidos LIKE ?)
-            AND id != ?
+            u.id != ?
+            AND u.fecha_baja IS NULL
+            AND (
+                u.usuario LIKE ?
+                OR u.nombre LIKE ?
+                OR u.apellidos LIKE ?
+                OR CONCAT(u.nombre, ' ', u.apellidos) LIKE ?
+            )
         LIMIT 10";
 
-$stmt = $conexion->prepare($sql);
+$stmt = $mysqli->prepare($sql);
 
-$like = "%$busqueda%";
-$stmt->bind_param("sssi", $like, $like, $like, $id_usuario_actual);
+$like = "%" . $busqueda . "%";
+
+$stmt->bind_param(
+    "issss",
+    $id_usuario_actual,
+    $like,
+    $like,
+    $like,
+    $like
+);
+
 $stmt->execute();
 
 $resultado = $stmt->get_result();
 
 while ($u = $resultado->fetch_assoc()) {
-    echo '
-        <div class="resultado_usuario">
-            <div>
-                <strong>' . htmlspecialchars($u["usuario"]) . '</strong>
-                <p>' . htmlspecialchars($u["nombre"] . " " . $u["apellidos"]) . '</p>
-            </div>
-
-            <button onclick="agregarAmigo(' . intval($u["id"]) . ')">
-                Agregar
-            </button>
-        </div>
-    ';
+    $modo_usuario = "busqueda";
+    include __DIR__ . "/../html/vistas/usuario_encontrado.php";
 }
+
+$stmt->close();
 ?>

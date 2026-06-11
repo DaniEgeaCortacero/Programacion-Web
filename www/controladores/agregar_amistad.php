@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../modelo/conexion.php";
+require_once "db.php";
 
 if (!isset($_SESSION["id_usuario"])) {
     exit("Debes iniciar sesión");
@@ -22,7 +22,7 @@ $sql = "SELECT estado
         FROM amistad
         WHERE id_usuario = ? AND id_amigo = ?";
 
-$stmt = $conexion->prepare($sql);
+$stmt = $mysqli->prepare($sql);
 $stmt->bind_param("ii", $id_usuario, $id_amigo);
 $stmt->execute();
 
@@ -50,7 +50,7 @@ $sql = "SELECT estado
         FROM amistad
         WHERE id_usuario = ? AND id_amigo = ?";
 
-$stmt = $conexion->prepare($sql);
+$stmt = $mysqli->prepare($sql);
 $stmt->bind_param("ii", $id_amigo, $id_usuario);
 $stmt->execute();
 
@@ -73,7 +73,7 @@ if ($res->num_rows > 0) {
                        SET estado = 'aceptada'
                        WHERE id_usuario = ? AND id_amigo = ?";
 
-        $stmt = $conexion->prepare($sql_update);
+        $stmt = $mysqli->prepare($sql_update);
         $stmt->bind_param("ii", $id_amigo, $id_usuario);
         $stmt->execute();
 
@@ -82,7 +82,7 @@ if ($res->num_rows > 0) {
                        (id_usuario, id_amigo, estado)
                        VALUES (?, ?, 'aceptada')";
 
-        $stmt = $conexion->prepare($sql_insert);
+        $stmt = $mysqli->prepare($sql_insert);
         $stmt->bind_param("ii", $id_usuario, $id_amigo);
         $stmt->execute();
 
@@ -100,7 +100,7 @@ $sql_insert = "INSERT INTO amistad
                (id_usuario, id_amigo)
                VALUES (?, ?)";
 
-$stmt = $conexion->prepare($sql_insert);
+$stmt = $mysqli->prepare($sql_insert);
 $stmt->bind_param("ii", $id_usuario, $id_amigo);
 
 if ($stmt->execute()) {

@@ -39,6 +39,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+let companerosSeleccionados = [];
+
+function agregarCompanero(idUsuario, nombreUsuario) {
+    if (companerosSeleccionados.includes(idUsuario)) {
+        return;
+    }
+
+    companerosSeleccionados.push(idUsuario);
+
+    document.getElementById("companeros_ids").value =
+        JSON.stringify(companerosSeleccionados);
+
+    document.getElementById("lista_companeros_seleccionados").innerHTML += `
+        <span class="companero_chip">@${nombreUsuario}</span>
+    `;
+}
+
 function cargarProvinciasEvento(idPais) {
     fetch("../controladores/load_provincias.php?id_pais=" + idPais)
         .then(res => res.json())

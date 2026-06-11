@@ -10,6 +10,10 @@
         header("Location: ./prototipo_login.php");
         exit;
     }
+
+    require_once "../controladores/update_ultima_conexion.php";
+    require_once "../controladores/load_amistades.php";
+    require_once "../controladores/load_solicitudes_amistad.php";
 ?>
 
 <!doctype html>
@@ -19,14 +23,12 @@
 
     <title>Prototipo web</title>
 
-    <link rel="stylesheet" href="../css/style_proto_main.css?v=10">
+    <link rel="stylesheet" href="../css/style_proto_main.css?v=15">
     <link rel="stylesheet" href="../css/style_proto_admin.css?v=8">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
-
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/@tmcw/togeojson@5.8.1/dist/togeojson.umd.js"></script>
 </head>
+
 <body>
 
     <?php include("../include/header.php"); ?>
@@ -60,6 +62,7 @@
                 $vistas = [
                     'home' => 'vistas/home.php',
                     'perfil' => 'vistas/perfil.php',
+                    'usuario_detalles' => 'vistas/usuario_detalles.php',
                     'amistad_detalles' => 'vistas/amistad_detalles.php',
                     'crearEvento' => 'vistas/evento_creacion.php',
                     
@@ -86,7 +89,16 @@
         <a href="https://es.textstudio.com/">Generador de fuentes</a>
     </footer>
 
-<script src="../js/app.js?v=18"></script>
-<script src="../js/disable_cache.js?v=2"></script>
+<?php include("../include/modalGaleria.php"); ?>
+<?php include("../include/modalEvento.php"); ?>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/@tmcw/togeojson@5.8.1/dist/togeojson.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
+
+<script src="../js/app.js?v=20"></script>
+<script src="../js/aplausos.js?v=1"></script>
+<script src="../js/disable_cache.js?v=2"></script>
+<script src="../js/busqueda_agregacion_usuarios.js?v=1"></script>
+<script src="../js/load_actividades_main_ajax.js?v=2"></script>
 </body>
