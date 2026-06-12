@@ -102,7 +102,121 @@
     font-size: 14px;
 }
 
+/* ####################### FORMULARIOS DATOS ADMIN */
 
+.admin_form_datos {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.admin_form_datos input,
+.admin_form_datos select {
+    height: 42px;
+    padding: 0 12px;
+
+    border: 1px solid #cccccc;
+    border-radius: 9px;
+
+    background: #ffffff;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.admin_form_datos input:focus,
+.admin_form_datos select:focus {
+    outline: none;
+    border-color: #ff9800;
+    box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.18);
+}
+
+.admin_form_datos select {
+    min-width: 230px;
+}
+
+.admin_form_datos .btn_admin {
+    height: 42px;
+    padding: 0 18px;
+
+    border: none;
+    cursor: pointer;
+}
+
+/* Cuando el formulario tenga muchos campos */
+.admin_form_datos input[type="number"] {
+    max-width: 130px;
+}
+
+/* ####################### TABLA DATOS ADMIN */
+
+.admin_contenido h2 {
+    margin-top: 0;
+    margin-bottom: 22px;
+    font-size: 26px;
+}
+
+.admin_tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.admin_tabla th {
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: 800;
+    color: #111;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.admin_tabla td {
+    padding: 13px 12px;
+    border-bottom: 1px solid #e1e1e1;
+    vertical-align: middle;
+}
+
+.admin_tabla tr:hover td {
+    background: #fff8ec;
+}
+
+.admin_tabla td:last-child,
+.admin_tabla th:last-child {
+    width: 120px;
+    text-align: center;
+}
+
+.admin_tabla .acciones {
+    justify-content: center;
+}
+
+.admin_tabla .btn_tabla {
+    min-width: 86px;
+}
+
+/* ####################### RESPONSIVE ADMIN */
+
+@media (max-width: 850px) {
+    .admin_form_datos {
+        grid-template-columns: 1fr;
+    }
+
+    .admin_form_datos select,
+    .admin_form_datos input,
+    .admin_form_datos .btn_admin {
+        width: 100%;
+        max-width: none;
+    }
+
+    .admin_contenido {
+        overflow-x: auto;
+    }
+
+    .admin_tabla {
+        min-width: 650px;
+    }
+}
 
 
 /* ####################### DATOS ####################### */
@@ -142,6 +256,37 @@
 }
 
 
+/* ####################### ACCIONES DATOS ####################### */
+
+.admin_tabla th:last-child,
+.admin_tabla td:last-child {
+    width: 190px;
+    text-align: right;
+    padding-right: 18px;
+}
+
+.admin_tabla .acciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.admin_tabla .acciones form {
+    margin: 0;
+}
+
+.admin_tabla .acciones .btn_tabla,
+.admin_tabla .acciones button {
+    min-width: 82px;
+    height: 34px;
+    padding: 0 12px;
+    font-size: 14px;
+}
+
+
 /* ####################### USUARIOS ####################### */
 
 .admin_tabla {
@@ -159,27 +304,45 @@
 .acciones {
     display: flex;
     gap: 8px;
-}
-
-.acciones {
-    display: flex;
-    gap: 8px;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.acciones form {
+    margin: 0;
+}
+
+.admin_busqueda {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.admin_busqueda input {
+    flex: 1;
+    min-width: 220px;
 }
 
 .btn_tabla {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 12px;
+
+    min-height: 34px;
+    padding: 0 12px;
+
     background: #ff9800;
     color: #fff;
+
     text-decoration: none;
     border: none;
     border-radius: 8px;
+
     font: inherit;
+    font-size: 14px;
     cursor: pointer;
+
     transition: background 0.2s;
 }
 
@@ -193,6 +356,35 @@
 
 .btn_peligro:hover {
     background: #a93c3c;
+}
+
+.fila_usuario_admin td {
+    vertical-align: top;
+}
+
+.usuario_admin_info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 10px;
+}
+
+.usuario_admin_info span {
+    color: #555;
+}
+
+.acciones_usuario_admin {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.acciones_usuario_admin form {
+    margin: 0;
+}
+
+.acciones_usuario_admin .btn_tabla {
+    min-width: 92px;
 }
 
 /* ####################### BUSCADOR */ 
@@ -259,4 +451,192 @@
     border-radius: 14px;
     padding: 18px 20px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ####################### ACCIONES EN TABLAS DE DATOS AUXILIARES */
+
+.admin_tabla th:last-child,
+.admin_tabla td:last-child {
+    width: 210px;
+    min-width: 210px;
+    text-align: right;
+}
+
+.acciones_dato {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.acciones_dato form {
+    margin: 0;
+    display: inline-flex;
+}
+
+.acciones_dato .btn_tabla,
+.acciones_dato button {
+    width: 82px;
+    height: 34px;
+    padding: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    line-height: 1;
+}
+
+
+/* ####################### USUARIOS ADMIN - ACCIONES EN HORIZONTAL */
+
+.acciones_usuario_admin {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.acciones_usuario_admin form {
+    margin: 0;
+}
+
+.acciones_usuario_admin .btn_tabla,
+.acciones_usuario_admin button {
+    width: 82px;
+    min-width: 82px;
+    height: 34px;
+    padding: 0 10px;
+
+    font-size: 13px;
+    line-height: 1;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ####################### USUARIOS ADMIN - FILAS CON ACCIONES DEBAJO */
+
+.fila_usuario_admin_info td {
+    border-bottom: none;
+    padding-bottom: 6px;
+    vertical-align: top;
+}
+
+.fila_usuario_admin_acciones td {
+    padding-top: 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.usuario_admin_info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.usuario_admin_info span {
+    color: #555;
+}
+
+.acciones_usuario_admin {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.acciones_usuario_admin form {
+    margin: 0;
+}
+
+.acciones_usuario_admin .btn_tabla,
+.acciones_usuario_admin button {
+    min-width: 92px;
+    height: 34px;
+    padding: 0 12px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+}
+
+
+/* ####################### GESTION DE IMAGENES ####################### */
+
+
+.admin_grid_imagenes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 18px;
+}
+
+.admin_img_card {
+    background: #f8f8f8;
+    border-radius: 14px;
+    padding: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.admin_img_preview {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #ddd;
+}
+
+.admin_img_preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.admin_img_info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+}
+
+.admin_img_info strong {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.badge_perfil {
+    display: inline-flex;
+    align-self: flex-start;
+
+    background: #ff9800;
+    color: white;
+
+    border-radius: 999px;
+    padding: 3px 8px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.admin_img_card form {
+    margin: 0;
+}
+
+.admin_img_card button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
 }

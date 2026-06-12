@@ -11,5 +11,3 @@
         No hay más actividades.
     </p>
 </section>
-
-<script src="../js/load_actividades_main_ajax.js?v=2"></script>

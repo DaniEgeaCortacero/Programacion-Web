@@ -23,8 +23,8 @@
 
     <title>Prototipo web</title>
 
-    <link rel="stylesheet" href="../css/style_proto_main.css?v=15">
-    <link rel="stylesheet" href="../css/style_proto_admin.css?v=8">
+    <link rel="stylesheet" href="../css/style_proto_main.css?v=19">
+    <link rel="stylesheet" href="../css/style_proto_admin.css?v=15">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 </head>
@@ -65,12 +65,15 @@
                     'usuario_detalles' => 'vistas/usuario_detalles.php',
                     'amistad_detalles' => 'vistas/amistad_detalles.php',
                     'crearEvento' => 'vistas/evento_creacion.php',
+                    'editarEvento' => 'vistas/evento_creacion.php',
                     
                     'admin_administracion' => 'admin/administracion.php',
                     'admin_datos' => 'admin/datos.php',
                     'admin_usuarios' => 'admin/usuarios.php',
-                    'admin_actividades' => 'admin/actividades.php'
-
+                    'admin_actividades' => 'admin/actividades.php',
+                    'admin_editar_usuario' => 'vistas/perfil.php',
+                    'admin_editar_dato' => 'admin/editar_dato.php',
+                    'admin_imagenes' => 'admin/imagenes.php'
                 ];
 
                 if(isset($vistas[$vista])){
@@ -96,9 +99,10 @@
 <script src="https://unpkg.com/@tmcw/togeojson@5.8.1/dist/togeojson.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.7.0/gpx.min.js"></script>
 
-<script src="../js/app.js?v=20"></script>
+<script src="../js/app.js?v=21"></script>
 <script src="../js/aplausos.js?v=1"></script>
+<script src="../js/evento_creacion.js?v=3"></script>
 <script src="../js/disable_cache.js?v=2"></script>
-<script src="../js/busqueda_agregacion_usuarios.js?v=1"></script>
+<script src="../js/busqueda_agregacion_usuarios.js?v=4"></script>
 <script src="../js/load_actividades_main_ajax.js?v=2"></script>
 </body>

@@ -30,6 +30,10 @@
                     Fecha del evento...
                 </div>
 
+                <div id="modal_ubicacion" class="modal_ubicacion">
+                    Ubicación...
+                </div>
+
                 <div id="modal_descripcion" class="modal_descripcion">
                     Descripción...
                 </div>
@@ -51,15 +55,7 @@
 
         </div>
 
-        <div class="footer_evento_detalles" id="modal_footer">
-            <div class="evento_aplausos">
-                👏 aplausos
-            </div>
-
-            <div class="botones_evento">
-                <button class="btn_evento editar" onclick="editarEvento()">Editar</button>
-            </div>
-        </div>
+        <div class="footer_evento_detalles" id="modal_footer"></div>
 
     </div>
 </div>

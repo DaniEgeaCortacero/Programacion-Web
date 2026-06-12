@@ -607,30 +607,33 @@ footer {
 
 /* ################### HEADER  */
 
-.header_perfil{
+.header_perfil {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
     gap: 20px;
+
     padding: 30px 32px;
     box-sizing: border-box;
-    background: linear-gradient(135deg, #ffb157 0%, #ffffff 100%); /* #fff3e0 */
+
+    background: linear-gradient(135deg, #ffb157 0%, #ffffff 100%);
     border-bottom: 1px solid #eeeeee;
 }
 
-.header_perfil_izq{
+.header_perfil_izq {
     display: flex;
     align-items: center;
     gap: 18px;
     min-width: 0;
+    flex: 1 1 320px;
 }
 
-.header_perfil_der{
+.header_perfil_der {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    flex-shrink: 0;
+    flex: 0 0 auto;
 }
 
 .imagen_perfil{
@@ -674,6 +677,64 @@ footer {
     margin: 6px 0 0 0;
     font-size: 15px;
     color: #666666;
+}
+
+.perfil_baja_aviso {
+    flex: 1 1 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 14px 18px;
+    border-radius: 14px;
+
+    background: #fff7ed;
+    border: 1px solid #ffb86b;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+
+    color: #4a2500;
+    font-size: 15px;
+}
+
+.perfil_baja_aviso span {
+    color: #7a3f00;
+}
+
+.perfil_baja_aviso strong {
+    color: #c2410c;
+    font-size: 15px;
+}
+
+.btn_anular_amistad_detalle {
+    background: #dc3545;
+    color: white;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 12px 16px;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    box-shadow: 0 8px 18px rgba(220, 53, 69, 0.22);
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn_anular_amistad_detalle:hover {
+    background: #bb2d3b;
+    transform: translateY(-1px);
+}
+
+.btn_anular_usuario {
+    background: #dc3545;
+    color: white;
+}
+
+.btn_anular_usuario:hover {
+    background: #bb2d3b;
 }
 
 
@@ -730,6 +791,48 @@ footer {
 
 .mis_actividades{
     margin-top: 12px;
+}
+
+.baja_card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+
+    padding: 18px;
+    border-radius: 16px;
+
+    background: #fff5f5;
+    border: 1px solid #f1b0b7;
+}
+
+.baja_card h3 {
+    margin: 0 0 6px;
+    color: #842029;
+}
+
+.baja_card p {
+    margin: 0;
+    color: #6c2b31;
+    font-size: 14px;
+}
+
+.btn_darse_baja {
+    background: #dc3545;
+    color: white;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 12px 18px;
+
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn_darse_baja:hover {
+    background: #bb2d3b;
 }
 
 /* ################### MODOS  */
@@ -1315,9 +1418,20 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
 
     padding-top: 8px;
     border-top: 1px solid #eeeeee;
+}
+
+.modal_publicador,
+.modal_fecha,
+.modal_ubicacion,
+.modal_descripcion {
+    background: #f4f4f4;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 750px) {
@@ -1335,6 +1449,22 @@ footer {
     }
 }
 
+.modal_footer_izq {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.modal_usuarios_aplausos {
+    max-width: 420px;
+
+    font-size: 12px;
+    color: #666;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 
 /* ####################### ACTIVIDAD_CREACION */
@@ -1502,6 +1632,54 @@ footer {
     margin-top: 10px;
 }
 
+.lista_companeros_creacion {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
 
+.item_companero_creacion {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 12px;
+    border-radius: 999px;
+
+    background: #f7f7f7;
+    border: 1px solid #dddddd;
+
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.item_companero_creacion:hover {
+    background: #fff3df;
+    border-color: #ff9800;
+    transform: translateY(-1px);
+}
+
+.item_companero_creacion input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.item_companero_creacion img {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 1px solid #000000;
+    background: #eeeeee;
+}
+
+.item_companero_creacion span {
+    font-size: 14px;
+    font-weight: 700;
+    color: #222;
+}
 
 

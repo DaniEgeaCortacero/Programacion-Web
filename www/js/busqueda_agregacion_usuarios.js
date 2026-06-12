@@ -62,3 +62,25 @@ function rechazarAmistad(idUsuario) {
     })
     .catch(error => console.error("Error:", error));
 }
+
+function eliminarAmistad(idAmigo) {
+    if (!confirm("¿Seguro que quieres anular esta amistad?")) {
+        return;
+    }
+
+    fetch("../controladores/quitar_amistad.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "id_amigo=" + encodeURIComponent(idAmigo)
+    })
+    .then(res => res.text())
+    .then(data => {
+        alert(data);
+        location.reload();
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+}

@@ -47,6 +47,15 @@ require_once "../controladores/load_actividades_usuario.php";
                     <h1><?= htmlspecialchars($perfil["nombre"] . " " . $perfil["apellidos"]) ?></h1>
                     <p>@<?= htmlspecialchars($perfil["usuario"]) ?></p>
                 </div>
+
+                <?php if (!empty($es_amigo) && empty($es_mi_perfil)): ?>
+                    <button 
+                        type="button"
+                        class="btn_anular_amistad_detalle"
+                        onclick="eliminarAmistad(<?= intval($perfil["id"]) ?>)">
+                        Eliminar como amigo
+                    </button>
+                <?php endif; ?>
             </div>
         </div>
 

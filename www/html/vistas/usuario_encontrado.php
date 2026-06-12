@@ -22,7 +22,23 @@ $id_usuario_card = intval($u["id"]);
 
     <div class="acciones_usuario_encontrado">
 
-        <?php if ($modo_usuario === "solicitud"): ?>
+        <?php if ($modo_usuario === "amistad"): ?>
+
+            <a href="/html/prototipo_main.php?vista=amistad_detalles&id=<?= $id_usuario_card ?>"
+            class="btn_circular btn_ver_usuario" 
+            title="Ver perfil">
+                👤
+            </a>
+
+            <button 
+                type="button"
+                class="btn_circular btn_anular_usuario"
+                onclick="eliminarAmistad(<?= $id_usuario_card ?>)"
+                title="Eliminar amistad">
+                −
+            </button>
+
+        <?php elseif ($modo_usuario === "solicitud"): ?>
 
             <button
                 class="btn_circular btn_agregar_usuario"

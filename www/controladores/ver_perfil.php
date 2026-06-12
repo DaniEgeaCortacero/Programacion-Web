@@ -10,11 +10,11 @@ if (!isset($_SESSION["id_usuario"])) {
 }
 
 $id_usuario_actual = intval($_SESSION["id_usuario"]);
+$es_admin = isset($_SESSION["id_rol"]) && intval($_SESSION["id_rol"]) === 1;
 
-/*
-    Si viene id por GET, vemos el perfil de ese usuario.
-    Si no viene id, vemos mi propio perfil.
-*/
+$vista_actual = $_GET["vista"] ?? "";
+
+
 $id_usuario = isset($_GET["id"]) ? intval($_GET["id"]) : $id_usuario_actual;
 
 $perfil = null;
@@ -22,32 +22,36 @@ $es_mi_perfil = ($id_usuario === $id_usuario_actual);
 $es_amigo = false;
 $estado_relacion = "ninguna";
 
+$permitir_baja = $es_admin && ($_GET["vista"] ?? "") === "admin_editar_usuario";
+
+$filtro_baja = $permitir_baja
+    ? ""
+    : "AND u.fecha_baja IS NULL";
+
 $sql = "SELECT 
             u.id,
+            u.id_rol,
             u.usuario,
             u.correo,
             u.nombre,
             u.apellidos,
             u.fecha_nacimiento,
             u.fecha_alta,
+            u.fecha_baja,
+            u.id_tipo_actividad_preferida,
             ta.nombre AS tipo_actividad,
             p.nombre AS pais,
             pr.nombre AS provincia,
             l.nombre AS localidad,
             i.ruta AS imagen_perfil
         FROM usuario u
-        LEFT JOIN tipo_actividad ta 
-            ON u.id_tipo_actividad_preferida = ta.id
-        LEFT JOIN pais p 
-            ON u.id_pais = p.id
-        LEFT JOIN provincia pr 
-            ON u.id_provincia = pr.id
-        LEFT JOIN localidad l 
-            ON u.id_localidad = l.id
-        LEFT JOIN imagen i 
-            ON i.id_usuario = u.id AND i.es_perfil = 1
+        LEFT JOIN tipo_actividad ta ON u.id_tipo_actividad_preferida = ta.id
+        LEFT JOIN pais p ON u.id_pais = p.id
+        LEFT JOIN provincia pr ON u.id_provincia = pr.id
+        LEFT JOIN localidad l ON u.id_localidad = l.id
+        LEFT JOIN imagen i ON i.id_usuario = u.id AND i.es_perfil = 1
         WHERE u.id = ?
-        AND u.fecha_baja IS NULL
+        $filtro_baja
         LIMIT 1";
 
 $stmt = $mysqli->prepare($sql);
@@ -113,4 +117,4 @@ if ($es_mi_perfil) {
 
     $stmt->close();
 }
-?>
+

@@ -110,18 +110,65 @@ $stmt->bind_param(
     $id_rol
 );
 
+
 if ($stmt->execute()) {
+
+    $id_usuario_nuevo = $stmt->insert_id;
+    $stmt->close();
+
+    /*
+        Imagen de perfil por defecto
+    */
+    $nombre_imagen = "default.png";
+    $tamano = 0;
+    $alto = 512;
+    $ancho = 512;
+    $ruta = "../img/perfiles/default.png";
+    $es_perfil = 1;
+
+    $sql_img = "INSERT INTO imagen (
+                    id_usuario,
+                    nombre,
+                    tamano,
+                    alto,
+                    ancho,
+                    ruta,
+                    es_perfil
+                ) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt_img = $mysqli->prepare($sql_img);
+
+    if (!$stmt_img) {
+        die("Error al preparar imagen por defecto: " . $mysqli->error);
+    }
+
+    $stmt_img->bind_param(
+        "isiiisi",
+        $id_usuario_nuevo,
+        $nombre_imagen,
+        $tamano,
+        $alto,
+        $ancho,
+        $ruta,
+        $es_perfil
+    );
+
+    $stmt_img->execute();
+    $stmt_img->close();
+
     echo "<script>
             alert('Registro completado. Ya puedes iniciar sesión.');
             window.location.href='../html/prototipo_login.php?modo=login';
           </script>";
+
 } else {
     echo "<script>
             alert('Error al registrar el usuario.');
             window.location.href='../html/prototipo_login.php?modo=registro';
           </script>";
+
+    $stmt->close();
 }
 
-$stmt->close();
 $mysqli->close();
 ?>

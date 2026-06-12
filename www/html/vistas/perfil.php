@@ -1,5 +1,17 @@
-<?php 
-require_once "../controladores/ver_perfil.php"; 
+<?php
+$modo_admin_edicion = 
+    ($_GET["vista"] ?? "") === "admin_editar_usuario"
+    && isset($_SESSION["id_rol"])
+    && intval($_SESSION["id_rol"]) === 1;
+
+
+require_once "../controladores/ver_perfil.php";
+
+if (empty($perfil)) {
+    echo "<p>No se ha encontrado el perfil o no tienes permiso para verlo.</p>";
+    return;
+}
+
 require_once "../controladores/load_tipos_actividad.php";
 require_once "../controladores/load_mis_actividades.php";
 ?>
@@ -19,13 +31,12 @@ require_once "../controladores/load_mis_actividades.php";
 
             <div class="header_perfil">
                 <div class="header_perfil_izq">
-                    
 
                     <img 
                         src="<?= !empty($perfil["imagen_perfil"]) ? htmlspecialchars($perfil["imagen_perfil"]) : '../img/default.png' ?>"  
                         alt="Foto de perfil" 
                         class="imagen_perfil"
-                        onclick="document.getElementById('input_imagen_perfil').click();"
+                        <?= !$modo_admin_edicion ? 'onclick="document.getElementById(\'input_imagen_perfil\').click();"' : '' ?>
                     >
 
                     <div class="headerDatosIniciales">
@@ -35,11 +46,28 @@ require_once "../controladores/load_mis_actividades.php";
                 </div>
 
                 <div class="header_perfil_der">
-                    <button type="button" id="editPerfilBtn" class="btn_primario">Editar perfil</button>
+                    <button type="button" id="editPerfilBtn" class="btn_primario">
+                        <?= $modo_admin_edicion ? "Editar usuario" : "Editar perfil" ?>
+                    </button>
                 </div>
-            </div>
-        <form id="perfil_form" class="perfil_contenido" method="POST" action="../controladores/actualizar_perfil.php">
 
+                <?php if ($modo_admin_edicion && !empty($perfil["fecha_baja"])): ?>
+                    <div class="perfil_baja_aviso">
+                        <span>Este usuario está dado de baja desde:</span>
+                        <strong><?= htmlspecialchars($perfil["fecha_baja"]) ?></strong>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+        <form 
+            id="perfil_form" 
+            class="perfil_contenido" 
+            method="POST" 
+            action="<?= $modo_admin_edicion ? '../controladores/admin_actualizar_perfil.php' : '../controladores/actualizar_perfil.php' ?>"
+        >
+            <?php if ($modo_admin_edicion): ?>
+                <input type="hidden" name="id_usuario" value="<?= intval($perfil["id"]) ?>">
+            <?php endif; ?>
             <div class="perfil_inner">
 
                 <div class="seccion_datos">
@@ -81,7 +109,7 @@ require_once "../controladores/load_mis_actividades.php";
                                 <?php foreach ($tipos_actividad as $tipo): ?>
                                     <option 
                                         value="<?= $tipo["id"] ?>"
-                                        <?= ($tipo["nombre"] == $perfil["tipo_actividad"]) ? 'selected' : '' ?>
+                                        <?= intval($tipo["id"]) === intval($perfil["id_tipo_actividad_preferida"] ?? 0) ? 'selected' : '' ?>
                                     >
                                         <?= htmlspecialchars($tipo["nombre"]) ?>
                                     </option>
@@ -131,19 +159,65 @@ require_once "../controladores/load_mis_actividades.php";
                     <button type="submit" class="btn_primario">Guardar cambios</button>
                 </div>
 
-                <div class="seccion_datos mis_actividades">
-                    <h2>Mis actividades</h2>
+                <?php if (!$modo_admin_edicion && !empty($es_mi_perfil)): ?>
+                    <section class="seccion_datos seccion_baja">
+                        <h2>Gestión de cuenta</h2>
 
-                    <div class="datos_actividad">
-                        <?php foreach ($actividades as $actividad): ?>
-                            <?php include("evento.php"); ?>
-                        <?php endforeach; ?>
-                    </div>
+                        <div class="baja_card">
+                            <div>
+                                <h3>Darse de baja</h3>
+                                <p>
+                                    Si te das de baja, tu cuenta dejará de estar activa y no podrás iniciar sesión.
+                                </p>
+                            </div>
+
+                            <button 
+                                type="submit" 
+                                form="form_darse_baja"
+                                class="btn_darse_baja">
+                                Darse de baja
+                            </button>
+                        </div>
+                    </section>
+                <?php endif; ?>
+
+                <div class="seccion_datos mis_actividades">
+                    <?php if (!$modo_admin_edicion): ?>
+                        <div class="seccion_datos mis_actividades">
+                            <h2>Mis actividades</h2>
+
+                            <div class="datos_actividad">
+                                <?php foreach ($actividades as $actividad): ?>
+                                    <?php include("evento.php"); ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <div class="seccion_datos">
+                            <h2>Actividades del usuario</h2>
+
+                            <a 
+                                class="btn_admin"
+                                href="prototipo_main.php?vista=admin_actividades&id_usuario=<?= intval($perfil["id"]) ?>">
+                                Ver actividades
+                            </a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </form>
     </div>
 </section>
+
+
+<?php if (!empty($es_mi_perfil)): ?>
+    <form 
+        id="form_darse_baja"
+        method="POST"
+        action="../controladores/darse_baja.php"
+        onsubmit="return confirm('¿Seguro que quieres darte de baja? Tu cuenta dejará de estar activa.');">
+    </form>
+<?php endif; ?>
 
 <script>
 document.getElementById("input_imagen_perfil").addEventListener("change", function () {

@@ -4,6 +4,7 @@ let capaGpxModal = null;
 let actividadModalActual = null;
 
 
+
 /* ####################### FUNCIONES GPX ACTIVIDADES REDUCIDAS ####################### */
 
 function crearMapaCard(idMapa, rutaGPX){
@@ -93,6 +94,7 @@ function pintarModalEvento(data) {
     const modalPublicador = document.getElementById("modal_publicador");
     const modalFecha = document.getElementById("modal_fecha");
     const modalFechaEvento = document.getElementById("modal_fecha_evento");
+    const modalUbicacion = document.getElementById("modal_ubicacion");
     const modalFooter = document.getElementById("modal_footer");
 
     const actividad = data.actividad;
@@ -123,6 +125,19 @@ function pintarModalEvento(data) {
         modalFecha.innerHTML = `
             <strong>Fecha de publicación:</strong>
             <span>${actividad.fecha_publicacion || "Sin fecha"}</span>
+        `;
+    }
+
+    if (modalUbicacion) {
+        const partesUbicacion = [
+            actividad.localidad,
+            actividad.provincia,
+            actividad.pais
+        ].filter(Boolean);
+
+        modalUbicacion.innerHTML = `
+            <strong>Ubicación:</strong>
+            <span>${partesUbicacion.length > 0 ? partesUbicacion.join(", ") : "Sin ubicación"}</span>
         `;
     }
 
@@ -186,17 +201,62 @@ function pintarModalEvento(data) {
     }
 
     if (modalFooter) {
+        let textoUsuariosAplausos = "";
+
+        if (data.usuarios_aplausos && data.usuarios_aplausos.length > 0) {
+            const nombres = data.usuarios_aplausos.map(u => "@" + u.usuario);
+
+            textoUsuariosAplausos = `
+                <div class="modal_usuarios_aplausos">
+                    Aplaudido por ${nombres.join(", ")}
+                    ${
+                        data.n_aplausos > data.usuarios_aplausos.length
+                        ? ` y ${data.n_aplausos - data.usuarios_aplausos.length} más`
+                        : ""
+                    }
+                </div>
+            `;
+        } else {
+            textoUsuariosAplausos = `
+                <div class="modal_usuarios_aplausos">
+                    Aún no hay aplausos.
+                </div>
+            `;
+        }
+
         modalFooter.innerHTML = `
-            <button 
-                type="button"
-                class="btn_aplauso ${data.mi_aplauso ? "activo" : ""}"
-                data-id-actividad="${actividad.id}"
-                onclick="toggleAplauso(this)">
-                👏 <span>${data.n_aplausos}</span>
-            </button>
+            <div class="modal_footer_izq">
+                <button 
+                    type="button"
+                    class="btn_aplauso ${data.mi_aplauso ? "activo" : ""}"
+                    data-id-actividad="${actividad.id}"
+                    onclick="toggleAplauso(this)">
+                    👏 <span>${data.n_aplausos}</span>
+                </button>
+
+                ${textoUsuariosAplausos}
+            </div>
 
             <div class="botones_evento">
-                <button class="btn_evento editar" onclick="editarEvento()">Editar</button>
+                ${
+                    data.puede_gestionar
+                    ? `
+                        <button 
+                            type="button" 
+                            class="btn_evento editar"
+                            onclick="editarActividad(${actividad.id})">
+                            Editar
+                        </button>
+
+                        <button 
+                            type="button" 
+                            class="btn_evento eliminar"
+                            onclick="eliminarActividad(${actividad.id})">
+                            Eliminar
+                        </button>
+                    `
+                    : ""
+                }
             </div>
         `;
     }
@@ -248,9 +308,31 @@ function cargarMapaModal(rutaGPX) {
     }, 150);
 }
 
+function editarActividad(idActividad) {
+    window.location.href = "/html/prototipo_main.php?vista=editarEvento&id=" + encodeURIComponent(idActividad);
+}
 
+function eliminarActividad(idActividad) {
+    if (!confirm("¿Seguro que quieres eliminar esta actividad?")) {
+        return;
+    }
 
-
+    fetch("../controladores/eliminar_actividad.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "id_actividad=" + encodeURIComponent(idActividad)
+    })
+    .then(res => res.text())
+    .then(mensaje => {
+        alert(mensaje);
+        location.reload();
+    })
+    .catch(error => {
+        console.error("Error eliminando actividad:", error);
+    });
+}
 
 
 

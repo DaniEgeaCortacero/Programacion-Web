@@ -27,11 +27,20 @@ if ($id_actividad <= 0) {
 
 $sql = "SELECT 
             a.id,
+            a.id_usuario AS id_usuario_actividad,
             a.titulo,
             a.descripcion,
             a.archivo_gpx,
             a.fecha_evento,
             a.fecha_publicacion,
+
+            a.id_pais,
+            a.id_provincia,
+            a.id_localidad,
+
+            p.nombre AS pais,
+            pr.nombre AS provincia,
+            l.nombre AS localidad,
 
             ta.nombre AS tipo_actividad,
 
@@ -49,6 +58,15 @@ $sql = "SELECT
 
         JOIN tipo_actividad ta 
             ON a.id_tipo_actividad = ta.id
+
+        LEFT JOIN pais p 
+            ON p.id = a.id_pais
+
+        LEFT JOIN provincia pr 
+            ON pr.id = a.id_provincia
+
+        LEFT JOIN localidad l 
+            ON l.id = a.id_localidad
 
         LEFT JOIN imagen ip
             ON ip.id_usuario = u.id
@@ -164,6 +182,43 @@ $mi_aplauso = ($res_mio->num_rows > 0);
 
 $stmt_mio->close();
 
+
+/* ################ ES PROPIETARIO ################ */
+
+$es_propietario = intval($actividad["id_usuario_actividad"]) === $id_usuario_actual;
+
+$es_admin = isset($_SESSION["id_rol"]) && intval($_SESSION["id_rol"]) === 1;
+
+$puede_gestionar = $es_propietario || $es_admin;
+
+
+
+/* ################ USUARIOS QUE APLAUDIERON ################ */
+
+$sql_usuarios_aplausos = "SELECT 
+                            u.id,
+                            u.usuario
+                          FROM aplauso ap
+                          JOIN usuario u ON u.id = ap.id_usuario
+                          WHERE ap.id_actividad = ?
+                          ORDER BY u.usuario
+                          LIMIT 6";
+
+$stmt_usuarios_aplausos = $mysqli->prepare($sql_usuarios_aplausos);
+$stmt_usuarios_aplausos->bind_param("i", $id_actividad);
+$stmt_usuarios_aplausos->execute();
+$res_usuarios_aplausos = $stmt_usuarios_aplausos->get_result();
+
+$usuarios_aplausos = [];
+
+while ($fila = $res_usuarios_aplausos->fetch_assoc()) {
+    $usuarios_aplausos[] = $fila;
+}
+
+$stmt_usuarios_aplausos->close();
+
+
+
 /* ################ RESPUESTA JSON ################ */
 
 echo json_encode([
@@ -172,6 +227,10 @@ echo json_encode([
     "imagenes" => $imagenes,
     "companeros" => $companeros,
     "n_aplausos" => $n_aplausos,
-    "mi_aplauso" => $mi_aplauso
+    "mi_aplauso" => $mi_aplauso,
+    "usuarios_aplausos" => $usuarios_aplausos,
+    "es_propietario" => $es_propietario,
+    "es_admin" => $es_admin,
+    "puede_gestionar" => $puede_gestionar
 ]);
 ?>
