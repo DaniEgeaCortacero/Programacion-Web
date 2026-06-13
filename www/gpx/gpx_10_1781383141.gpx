@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="TrailSync Test GPX Generator" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Granada Centro - Carrera suave</name>
+    <desc>Ruta circular urbana de prueba por el centro de Granada.</desc>
+    <time>2026-06-12T08:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Granada Centro - Carrera suave</name>
+    <type>Carrera</type>
+    <trkseg>
+      <trkpt lat="37.176900" lon="-3.598600">
+        <ele>680.0</ele>
+        <time>2026-06-12T08:00:00Z</time>
+      </trkpt>
+      <trkpt lat="37.177800" lon="-3.596650">
+        <ele>688.0</ele>
+        <time>2026-06-12T08:01:16Z</time>
+      </trkpt>
+      <trkpt lat="37.178700" lon="-3.594700">
+        <ele>690.0</ele>
+        <time>2026-06-12T08:02:32Z</time>
+      </trkpt>
+      <trkpt lat="37.180400" lon="-3.593250">
+        <ele>700.5</ele>
+        <time>2026-06-12T08:03:59Z</time>
+      </trkpt>
+      <trkpt lat="37.182100" lon="-3.591800">
+        <ele>705.0</ele>
+        <time>2026-06-12T08:05:26Z</time>
+      </trkpt>
+      <trkpt lat="37.183250" lon="-3.589600">
+        <ele>715.5</ele>
+        <time>2026-06-12T08:06:55Z</time>
+      </trkpt>
+      <trkpt lat="37.184400" lon="-3.587400">
+        <ele>720.0</ele>
+        <time>2026-06-12T08:08:24Z</time>
+      </trkpt>
+      <trkpt lat="37.182950" lon="-3.586200">
+        <ele>720.5</ele>
+        <time>2026-06-12T08:09:38Z</time>
+      </trkpt>
+      <trkpt lat="37.181500" lon="-3.585000">
+        <ele>715.0</ele>
+        <time>2026-06-12T08:10:52Z</time>
+      </trkpt>
+      <trkpt lat="37.180067" lon="-3.586033">
+        <ele>712.6</ele>
+        <time>2026-06-12T08:12:02Z</time>
+      </trkpt>
+      <trkpt lat="37.178633" lon="-3.587067">
+        <ele>707.6</ele>
+        <time>2026-06-12T08:13:12Z</time>
+      </trkpt>
+      <trkpt lat="37.177200" lon="-3.588100">
+        <ele>700.0</ele>
+        <time>2026-06-12T08:14:22Z</time>
+      </trkpt>
+      <trkpt lat="37.176167" lon="-3.589667">
+        <ele>697.6</ele>
+        <time>2026-06-12T08:15:31Z</time>
+      </trkpt>
+      <trkpt lat="37.175133" lon="-3.591233">
+        <ele>692.6</ele>
+        <time>2026-06-12T08:16:40Z</time>
+      </trkpt>
+      <trkpt lat="37.174100" lon="-3.592800">
+        <ele>685.0</ele>
+        <time>2026-06-12T08:17:49Z</time>
+      </trkpt>
+      <trkpt lat="37.175033" lon="-3.594733">
+        <ele>685.9</ele>
+        <time>2026-06-12T08:19:06Z</time>
+      </trkpt>
+      <trkpt lat="37.175967" lon="-3.596667">
+        <ele>684.3</ele>
+        <time>2026-06-12T08:20:23Z</time>
+      </trkpt>
+      <trkpt lat="37.176900" lon="-3.598600">
+        <ele>680.0</ele>
+        <time>2026-06-12T08:21:40Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

@@ -640,3 +640,192 @@
     opacity: 0.55;
     cursor: not-allowed;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ####################### FIX ACTIVIDADES ADMIN SIN ROMPER PÁGINA ####################### */
+
+.admin_contenido_actividades {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
+
+.admin_contenido_actividades .admin_tabla_actividades {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+}
+
+/* Quitar el ancho global de acciones SOLO en esta tabla */
+.admin_contenido_actividades .admin_tabla_actividades th:last-child,
+.admin_contenido_actividades .admin_tabla_actividades td:last-child {
+    width: 230px;
+    min-width: 0;
+    text-align: right;
+    padding-right: 12px;
+}
+
+/* Columnas de actividades */
+.admin_contenido_actividades .admin_tabla_actividades th:nth-child(1),
+.admin_contenido_actividades .admin_tabla_actividades td:nth-child(1) {
+    width: 18%;
+}
+
+.admin_contenido_actividades .admin_tabla_actividades th:nth-child(2),
+.admin_contenido_actividades .admin_tabla_actividades td:nth-child(2) {
+    width: 10%;
+}
+
+.admin_contenido_actividades .admin_tabla_actividades th:nth-child(3),
+.admin_contenido_actividades .admin_tabla_actividades td:nth-child(3) {
+    width: 13%;
+}
+
+.admin_contenido_actividades .admin_tabla_actividades th:nth-child(4),
+.admin_contenido_actividades .admin_tabla_actividades td:nth-child(4),
+.admin_contenido_actividades .admin_tabla_actividades th:nth-child(5),
+.admin_contenido_actividades .admin_tabla_actividades td:nth-child(5) {
+    width: 13%;
+}
+
+.admin_contenido_actividades .admin_tabla_actividades th:nth-child(6),
+.admin_contenido_actividades .admin_tabla_actividades td:nth-child(6),
+.admin_contenido_actividades .admin_tabla_actividades th:nth-child(7),
+.admin_contenido_actividades .admin_tabla_actividades td:nth-child(7) {
+    width: 8%;
+    text-align: center;
+}
+
+/* Que el texto no empuje la tabla */
+.admin_contenido_actividades .admin_tabla_actividades th,
+.admin_contenido_actividades .admin_tabla_actividades td {
+    white-space: normal;
+    word-break: break-word;
+}
+
+/* Acciones compactas */
+.admin_contenido_actividades .admin_tabla_actividades .acciones {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.admin_contenido_actividades .admin_tabla_actividades .btn_tabla {
+    width: 70px;
+    min-width: 70px;
+    height: 34px;
+    padding: 0 8px;
+    font-size: 13px;
+}
+
+/* Si la pantalla es estrecha, entonces sí permitimos scroll SOLO dentro del recuadro */
+@media (max-width: 1050px) {
+    .admin_contenido_actividades .admin_tabla_actividades {
+        min-width: 850px;
+    }
+}
+
+/* ####################### ACTIVIDADES ADMIN - TABLA SIMPLE ####################### */
+
+.admin_contenido_actividades {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.admin_tabla_actividades_simple {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+}
+
+/* Anchos más razonables */
+.admin_tabla_actividades_simple th:nth-child(1),
+.admin_tabla_actividades_simple td:nth-child(1) {
+    width: 24%;
+}
+
+.admin_tabla_actividades_simple th:nth-child(2),
+.admin_tabla_actividades_simple td:nth-child(2) {
+    width: 14%;
+}
+
+.admin_tabla_actividades_simple th:nth-child(3),
+.admin_tabla_actividades_simple td:nth-child(3) {
+    width: 18%;
+}
+
+.admin_tabla_actividades_simple th:nth-child(4),
+.admin_tabla_actividades_simple td:nth-child(4) {
+    width: 28%;
+}
+
+.admin_tabla_actividades_simple th:nth-child(5),
+.admin_tabla_actividades_simple td:nth-child(5) {
+    width: 16%;
+}
+
+/* Evita cortes feos */
+.admin_tabla_actividades_simple th,
+.admin_tabla_actividades_simple td {
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+    vertical-align: top;
+}
+
+/* Solo el título puede partir si es largo */
+.admin_tabla_actividades_simple td:first-child {
+    overflow-wrap: break-word;
+}
+
+.fila_actividad_admin_info td {
+    border-bottom: none;
+    padding-bottom: 8px;
+}
+
+.fila_actividad_admin_acciones td {
+    padding-top: 0;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin_fechas_actividad,
+.admin_datos_actividad {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+}
+
+.acciones_actividad_admin {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.acciones_actividad_admin .btn_tabla,
+.acciones_actividad_admin button {
+    width: 82px;
+    min-width: 82px;
+    height: 34px;
+    padding: 0 10px;
+    font-size: 13px;
+}

@@ -60,17 +60,21 @@ body {
 /* LOGIN */
 .login_card.login {
     width: 500px;
-    padding: 22px 34px 28px;
-    gap: 22px;
+    padding: 26px 34px 30px;
+    gap: 24px;
 }
 
 .login_card.login .contenido {
     padding-inline: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .login_card.login .panel {
     padding: 0 25px;
-    margin-top: 8px;
+    margin-top: 22px;
 }
 
 /* REGISTRO */

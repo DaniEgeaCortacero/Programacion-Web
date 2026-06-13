@@ -12,7 +12,7 @@ if ($modo === 'registro') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Prototipo web</title>
-    <link rel="stylesheet" href="../css/style_proto_login.css?v=24">
+    <link rel="stylesheet" href="../css/style_proto_login.css?v=26">
 </head>
 
 <body>

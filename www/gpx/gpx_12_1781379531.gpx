@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="TrailSync Test GPX Generator" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Barcelona Montjuïc - Paseo deportivo</name>
+    <desc>Ruta urbana de prueba con subida suave por Montjuïc.</desc>
+    <time>2026-06-16T10:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Barcelona Montjuïc - Paseo deportivo</name>
+    <type>Senderismo</type>
+    <trkseg>
+      <trkpt lat="41.371400" lon="2.151700">
+        <ele>25.0</ele>
+        <time>2026-06-16T10:00:00Z</time>
+      </trkpt>
+      <trkpt lat="41.370400" lon="2.153650">
+        <ele>38.0</ele>
+        <time>2026-06-16T10:01:15Z</time>
+      </trkpt>
+      <trkpt lat="41.369400" lon="2.155600">
+        <ele>45.0</ele>
+        <time>2026-06-16T10:02:30Z</time>
+      </trkpt>
+      <trkpt lat="41.368350" lon="2.157300">
+        <ele>61.5</ele>
+        <time>2026-06-16T10:03:40Z</time>
+      </trkpt>
+      <trkpt lat="41.367300" lon="2.159000">
+        <ele>72.0</ele>
+        <time>2026-06-16T10:04:50Z</time>
+      </trkpt>
+      <trkpt lat="41.365750" lon="2.159700">
+        <ele>86.5</ele>
+        <time>2026-06-16T10:05:59Z</time>
+      </trkpt>
+      <trkpt lat="41.364200" lon="2.160400">
+        <ele>95.0</ele>
+        <time>2026-06-16T10:07:08Z</time>
+      </trkpt>
+      <trkpt lat="41.361500" lon="2.158700">
+        <ele>115.0</ele>
+        <time>2026-06-16T10:09:15Z</time>
+      </trkpt>
+      <trkpt lat="41.362300" lon="2.156000">
+        <ele>105.5</ele>
+        <time>2026-06-16T10:10:48Z</time>
+      </trkpt>
+      <trkpt lat="41.363100" lon="2.153300">
+        <ele>90.0</ele>
+        <time>2026-06-16T10:12:21Z</time>
+      </trkpt>
+      <trkpt lat="41.364650" lon="2.151850">
+        <ele>78.0</ele>
+        <time>2026-06-16T10:13:41Z</time>
+      </trkpt>
+      <trkpt lat="41.366200" lon="2.150400">
+        <ele>60.0</ele>
+        <time>2026-06-16T10:15:01Z</time>
+      </trkpt>
+      <trkpt lat="41.367933" lon="2.150833">
+        <ele>50.9</ele>
+        <time>2026-06-16T10:16:16Z</time>
+      </trkpt>
+      <trkpt lat="41.369667" lon="2.151267">
+        <ele>39.3</ele>
+        <time>2026-06-16T10:17:31Z</time>
+      </trkpt>
+      <trkpt lat="41.371400" lon="2.151700">
+        <ele>25.0</ele>
+        <time>2026-06-16T10:18:46Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

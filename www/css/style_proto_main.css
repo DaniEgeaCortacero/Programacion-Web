@@ -1112,8 +1112,22 @@ footer {
     transition: background 0.2s ease;
 }
 
-.btn_evento.editar{
-    background: #ff4800;
+.btn_evento.editar {
+    background: #ff9800;
+    color: white;
+}
+
+.btn_evento.editar:hover {
+    background: #e68900;
+}
+
+.btn_evento.eliminar {
+    background: #c94b4b;
+    color: white;
+}
+
+.btn_evento.eliminar:hover {
+    background: #a93c3c;
 }
 
 .btn_evento.participar{

@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (isset($_SESSION["autentica"]) && $_SESSION["autentica"] === "SIP") {
+    header("Location: html/prototipo_main.php");
+    exit;
+}
+
+header("Location: html/prototipo_login.php");
+exit;
+?>
 <!doctype html>
 <html lang="es">
 <head>

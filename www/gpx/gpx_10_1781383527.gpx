@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="TrailSync Test GPX Generator" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Madrid Casa de Campo - MTB</name>
+    <desc>Ruta circular de prueba para bicicleta de montaña.</desc>
+    <time>2026-06-14T09:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Madrid Casa de Campo - MTB</name>
+    <type>Ciclismo MTB</type>
+    <trkseg>
+      <trkpt lat="40.419700" lon="-3.730600">
+        <ele>610.0</ele>
+        <time>2026-06-14T09:00:00Z</time>
+      </trkpt>
+      <trkpt lat="40.420460" lon="-3.732920">
+        <ele>614.8</ele>
+        <time>2026-06-14T09:00:38Z</time>
+      </trkpt>
+      <trkpt lat="40.421220" lon="-3.735240">
+        <ele>618.9</ele>
+        <time>2026-06-14T09:01:16Z</time>
+      </trkpt>
+      <trkpt lat="40.421980" lon="-3.737560">
+        <ele>621.9</ele>
+        <time>2026-06-14T09:01:54Z</time>
+      </trkpt>
+      <trkpt lat="40.422740" lon="-3.739880">
+        <ele>623.8</ele>
+        <time>2026-06-14T09:02:32Z</time>
+      </trkpt>
+      <trkpt lat="40.423500" lon="-3.742200">
+        <ele>625.0</ele>
+        <time>2026-06-14T09:03:10Z</time>
+      </trkpt>
+      <trkpt lat="40.424317" lon="-3.744167">
+        <ele>629.0</ele>
+        <time>2026-06-14T09:03:44Z</time>
+      </trkpt>
+      <trkpt lat="40.425133" lon="-3.746133">
+        <ele>632.6</ele>
+        <time>2026-06-14T09:04:18Z</time>
+      </trkpt>
+      <trkpt lat="40.425950" lon="-3.748100">
+        <ele>635.5</ele>
+        <time>2026-06-14T09:04:52Z</time>
+      </trkpt>
+      <trkpt lat="40.426767" lon="-3.750067">
+        <ele>637.6</ele>
+        <time>2026-06-14T09:05:26Z</time>
+      </trkpt>
+      <trkpt lat="40.427583" lon="-3.752033">
+        <ele>639.0</ele>
+        <time>2026-06-14T09:06:00Z</time>
+      </trkpt>
+      <trkpt lat="40.428400" lon="-3.754000">
+        <ele>640.0</ele>
+        <time>2026-06-14T09:06:34Z</time>
+      </trkpt>
+      <trkpt lat="40.427183" lon="-3.755783">
+        <ele>643.2</ele>
+        <time>2026-06-14T09:07:10Z</time>
+      </trkpt>
+      <trkpt lat="40.425967" lon="-3.757567">
+        <ele>645.9</ele>
+        <time>2026-06-14T09:07:46Z</time>
+      </trkpt>
+      <trkpt lat="40.424750" lon="-3.759350">
+        <ele>648.0</ele>
+        <time>2026-06-14T09:08:22Z</time>
+      </trkpt>
+      <trkpt lat="40.423533" lon="-3.761133">
+        <ele>649.3</ele>
+        <time>2026-06-14T09:08:58Z</time>
+      </trkpt>
+      <trkpt lat="40.422317" lon="-3.762917">
+        <ele>649.8</ele>
+        <time>2026-06-14T09:09:34Z</time>
+      </trkpt>
+      <trkpt lat="40.421100" lon="-3.764700">
+        <ele>650.0</ele>
+        <time>2026-06-14T09:10:10Z</time>
+      </trkpt>
+      <trkpt lat="40.419440" lon="-3.763820">
+        <ele>648.8</ele>
+        <time>2026-06-14T09:10:46Z</time>
+      </trkpt>
+      <trkpt lat="40.417780" lon="-3.762940">
+        <ele>646.9</ele>
+        <time>2026-06-14T09:11:22Z</time>
+      </trkpt>
+      <trkpt lat="40.416120" lon="-3.762060">
+        <ele>643.9</ele>
+        <time>2026-06-14T09:11:58Z</time>
+      </trkpt>
+      <trkpt lat="40.414460" lon="-3.761180">
+        <ele>639.8</ele>
+        <time>2026-06-14T09:12:34Z</time>
+      </trkpt>
+      <trkpt lat="40.412800" lon="-3.760300">
+        <ele>635.0</ele>
+        <time>2026-06-14T09:13:10Z</time>
+      </trkpt>
+      <trkpt lat="40.411786" lon="-3.758557">
+        <ele>634.2</ele>
+        <time>2026-06-14T09:13:43Z</time>
+      </trkpt>
+      <trkpt lat="40.410771" lon="-3.756814">
+        <ele>633.1</ele>
+        <time>2026-06-14T09:14:16Z</time>
+      </trkpt>
+      <trkpt lat="40.409757" lon="-3.755071">
+        <ele>631.5</ele>
+        <time>2026-06-14T09:14:49Z</time>
+      </trkpt>
+      <trkpt lat="40.408743" lon="-3.753329">
+        <ele>629.4</ele>
+        <time>2026-06-14T09:15:22Z</time>
+      </trkpt>
+      <trkpt lat="40.407729" lon="-3.751586">
+        <ele>626.6</ele>
+        <time>2026-06-14T09:15:55Z</time>
+      </trkpt>
+      <trkpt lat="40.406714" lon="-3.749843">
+        <ele>623.4</ele>
+        <time>2026-06-14T09:16:28Z</time>
+      </trkpt>
+      <trkpt lat="40.405700" lon="-3.748100">
+        <ele>620.0</ele>
+        <time>2026-06-14T09:17:01Z</time>
+      </trkpt>
+      <trkpt lat="40.406283" lon="-3.746067">
+        <ele>620.7</ele>
+        <time>2026-06-14T09:17:34Z</time>
+      </trkpt>
+      <trkpt lat="40.406867" lon="-3.744033">
+        <ele>620.9</ele>
+        <time>2026-06-14T09:18:07Z</time>
+      </trkpt>
+      <trkpt lat="40.407450" lon="-3.742000">
+        <ele>620.5</ele>
+        <time>2026-06-14T09:18:40Z</time>
+      </trkpt>
+      <trkpt lat="40.408033" lon="-3.739967">
+        <ele>619.3</ele>
+        <time>2026-06-14T09:19:13Z</time>
+      </trkpt>
+      <trkpt lat="40.408617" lon="-3.737933">
+        <ele>617.3</ele>
+        <time>2026-06-14T09:19:46Z</time>
+      </trkpt>
+      <trkpt lat="40.409200" lon="-3.735900">
+        <ele>615.0</ele>
+        <time>2026-06-14T09:20:19Z</time>
+      </trkpt>
+      <trkpt lat="40.410950" lon="-3.735017">
+        <ele>615.7</ele>
+        <time>2026-06-14T09:20:56Z</time>
+      </trkpt>
+      <trkpt lat="40.412700" lon="-3.734133">
+        <ele>615.9</ele>
+        <time>2026-06-14T09:21:33Z</time>
+      </trkpt>
+      <trkpt lat="40.414450" lon="-3.733250">
+        <ele>615.5</ele>
+        <time>2026-06-14T09:22:10Z</time>
+      </trkpt>
+      <trkpt lat="40.416200" lon="-3.732367">
+        <ele>614.3</ele>
+        <time>2026-06-14T09:22:47Z</time>
+      </trkpt>
+      <trkpt lat="40.417950" lon="-3.731483">
+        <ele>612.3</ele>
+        <time>2026-06-14T09:23:24Z</time>
+      </trkpt>
+      <trkpt lat="40.419700" lon="-3.730600">
+        <ele>610.0</ele>
+        <time>2026-06-14T09:24:01Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

@@ -28,45 +28,137 @@ $fecha_evento = $fecha . " " . $hora . ":00";
 
 $es_admin = isset($_SESSION["id_rol"]) && intval($_SESSION["id_rol"]) === 1;
 
+/* GPX NUEVO EN EDICIÓN */
+$ruta_gpx = null;
+
+if (isset($_FILES["gpx_ruta"]) && $_FILES["gpx_ruta"]["error"] === UPLOAD_ERR_OK) {
+    $tmp = $_FILES["gpx_ruta"]["tmp_name"];
+    $nombre_original = $_FILES["gpx_ruta"]["name"];
+    $extension = strtolower(pathinfo($nombre_original, PATHINFO_EXTENSION));
+
+    if ($extension !== "gpx") {
+        exit("El archivo de ruta debe ser GPX");
+    }
+
+    $carpeta = __DIR__ . "/../gpx/";
+
+    if (!is_dir($carpeta)) {
+        mkdir($carpeta, 0777, true);
+    }
+
+    if (!is_writable($carpeta)) {
+        exit("La carpeta GPX no tiene permisos de escritura");
+    }
+
+    $nombre_final = "gpx_" . $id_usuario . "_" . time() . "_" . uniqid() . ".gpx";
+    $ruta_fisica = $carpeta . $nombre_final;
+    $ruta_gpx = "../gpx/" . $nombre_final;
+
+    if (!move_uploaded_file($tmp, $ruta_fisica)) {
+        exit("No se pudo guardar el archivo GPX");
+    }
+}
+
 if ($es_admin) {
 
-    $sql = "UPDATE actividad
-        SET titulo = ?,
-            descripcion = ?,
-            id_tipo_actividad = ?,
-            fecha_evento = ?,
-            id_pais = ?,
-            id_provincia = ?,
-            id_localidad = ?
-        WHERE id = ?";
+    if ($ruta_gpx !== null) {
+        $sql = "UPDATE actividad
+                SET titulo = ?,
+                    descripcion = ?,
+                    id_tipo_actividad = ?,
+                    fecha_evento = ?,
+                    id_pais = ?,
+                    id_provincia = ?,
+                    id_localidad = ?,
+                    archivo_gpx = ?
+                WHERE id = ?";
 
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param(
-        "ssisiiii",
-        $titulo,
-        $descripcion,
-        $id_tipo_actividad,
-        $fecha_evento,
-        $id_pais,
-        $id_provincia,
-        $id_localidad,
-        $id_actividad
-    );
+        $stmt = $mysqli->prepare($sql);
+
+        $stmt->bind_param(
+            "ssisiiisi",
+            $titulo,
+            $descripcion,
+            $id_tipo_actividad,
+            $fecha_evento,
+            $id_pais,
+            $id_provincia,
+            $id_localidad,
+            $ruta_gpx,
+            $id_actividad
+        );
+
+    } else {
+        $sql = "UPDATE actividad
+                SET titulo = ?,
+                    descripcion = ?,
+                    id_tipo_actividad = ?,
+                    fecha_evento = ?,
+                    id_pais = ?,
+                    id_provincia = ?,
+                    id_localidad = ?
+                WHERE id = ?";
+
+        $stmt = $mysqli->prepare($sql);
+
+        $stmt->bind_param(
+            "ssisiiii",
+            $titulo,
+            $descripcion,
+            $id_tipo_actividad,
+            $fecha_evento,
+            $id_pais,
+            $id_provincia,
+            $id_localidad,
+            $id_actividad
+        );
+    }
 
 } else {
 
-    $sql = "UPDATE actividad
-        SET titulo = ?,
-            descripcion = ?,
-            id_tipo_actividad = ?,
-            fecha_evento = ?,
-            id_pais = ?,
-            id_provincia = ?,
-            id_localidad = ?
-        WHERE id = ?
-        AND id_usuario = ?";
+    if ($ruta_gpx !== null) {
+        $sql = "UPDATE actividad
+                SET titulo = ?,
+                    descripcion = ?,
+                    id_tipo_actividad = ?,
+                    fecha_evento = ?,
+                    id_pais = ?,
+                    id_provincia = ?,
+                    id_localidad = ?,
+                    archivo_gpx = ?
+                WHERE id = ?
+                AND id_usuario = ?";
 
         $stmt = $mysqli->prepare($sql);
+
+        $stmt->bind_param(
+            "ssisiiisii",
+            $titulo,
+            $descripcion,
+            $id_tipo_actividad,
+            $fecha_evento,
+            $id_pais,
+            $id_provincia,
+            $id_localidad,
+            $ruta_gpx,
+            $id_actividad,
+            $id_usuario
+        );
+
+    } else {
+        $sql = "UPDATE actividad
+                SET titulo = ?,
+                    descripcion = ?,
+                    id_tipo_actividad = ?,
+                    fecha_evento = ?,
+                    id_pais = ?,
+                    id_provincia = ?,
+                    id_localidad = ?
+                WHERE id = ?
+                AND id_usuario = ?";
+
+        $stmt = $mysqli->prepare($sql);
+
         $stmt->bind_param(
             "ssisiiiii",
             $titulo,
@@ -79,13 +171,15 @@ if ($es_admin) {
             $id_actividad,
             $id_usuario
         );
+    }
 }
 
 if (!$stmt->execute()) {
-    exit("Error al actualizar actividad");
+    exit("Error al actualizar actividad: " . $stmt->error);
 }
 
 $stmt->close();
+
 
 /*
     Actualizar compañeros

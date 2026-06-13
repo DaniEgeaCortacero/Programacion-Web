@@ -123,83 +123,126 @@ foreach ($companeros as $id_companero) {
 
 $stmt_companero->close();
 
-/* IMÁGENES */
+
 
 /* IMÁGENES */
-if (isset($_FILES["imagenes"])) {
-    $total = count($_FILES["imagenes"]["name"]);
+/* IMÁGENES DE LA ACTIVIDAD */
+if (isset($_FILES["imagenes"]) && !empty($_FILES["imagenes"]["name"][0])) {
 
-    for ($i = 0; $i < $total; $i++) {
+    $carpeta_destino = __DIR__ . "/../img/actividades/";
+
+    if (!is_dir($carpeta_destino)) {
+        if (!mkdir($carpeta_destino, 0777, true)) {
+            die("No se pudo crear la carpeta: " . $carpeta_destino);
+        }
+    }
+
+    if (!is_writable($carpeta_destino)) {
+        die("La carpeta no tiene permisos de escritura: " . $carpeta_destino);
+    }
+
+    $extensiones_permitidas = ["jpg", "jpeg", "png", "webp"];
+    $mimes_permitidos = ["image/jpeg", "image/png", "image/webp"];
+
+    for ($i = 0; $i < count($_FILES["imagenes"]["name"]); $i++) {
+
         if ($_FILES["imagenes"]["error"][$i] !== UPLOAD_ERR_OK) {
             continue;
         }
 
-        $tmp = $_FILES["imagenes"]["tmp_name"][$i];
         $nombre_original = $_FILES["imagenes"]["name"][$i];
-        $tamano = $_FILES["imagenes"]["size"][$i];
-
-        $info = getimagesize($tmp);
-        if ($info === false) {
-            continue;
-        }
-
-        $ancho = $info[0];
-        $alto = $info[1];
+        $tmp = $_FILES["imagenes"]["tmp_name"][$i];
+        $tamano = intval($_FILES["imagenes"]["size"][$i]);
 
         $extension = strtolower(pathinfo($nombre_original, PATHINFO_EXTENSION));
-        $permitidas = ["jpg", "jpeg", "png", "webp"];
 
-        if (!in_array($extension, $permitidas)) {
+        if (!in_array($extension, $extensiones_permitidas)) {
             continue;
         }
 
-        $hash = md5_file($tmp);
-        $nombre_final = "actividad_" . $id_actividad . "_" . $hash . "." . $extension;
+        $info_imagen = getimagesize($tmp);
 
-        $carpeta = __DIR__ . "/../img/actividades/";
-
-        if (!is_dir($carpeta)) {
-            mkdir($carpeta, 0777, true);
+        if ($info_imagen === false) {
+            continue;
         }
 
-        $ruta_fisica = $carpeta . $nombre_final;
-        $ruta_bd = "../img/actividades/" . $nombre_final;
+        $ancho = intval($info_imagen[0]);
+        $alto = intval($info_imagen[1]);
+        $mime = $info_imagen["mime"];
 
-        if (!file_exists($ruta_fisica)) {
-            move_uploaded_file($tmp, $ruta_fisica);
+        if (!in_array($mime, $mimes_permitidos)) {
+            continue;
         }
 
-        $sql_img = "INSERT INTO imagen (
-                        id_usuario,
-                        nombre,
-                        tamano,
-                        alto,
-                        ancho,
-                        ruta,
-                        es_perfil
-                    ) VALUES (?, ?, ?, ?, ?, ?, 0)";
+        /*
+            Nombre limpio y único.
+            Evita problemas con tildes, espacios, paréntesis o nombres repetidos.
+        */
+        if ($extension === "jpeg") {
+            $extension = "jpg";
+        }
+
+        $nombre_archivo = "actividad_" . $id_actividad . "_" . uniqid() . "." . $extension;
+
+        $ruta_fisica = $carpeta_destino . $nombre_archivo;
+        $ruta_bd = "../img/actividades/" . $nombre_archivo;
+
+        if (!move_uploaded_file($tmp, $ruta_fisica)) {
+            echo "<script>
+                alert('No se pudo guardar una de las imágenes. Revisa permisos de la carpeta img/actividades.');
+                window.history.back();
+            </script>";
+            exit;
+        }
+
+        /* Insertar imagen */
+        $es_perfil = 0;
+
+        $sql_img = "INSERT INTO imagen 
+                    (id_usuario, nombre, tamano, alto, ancho, ruta, es_perfil)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         $stmt_img = $mysqli->prepare($sql_img);
+
+        if (!$stmt_img) {
+            die("Error preparando imagen: " . $mysqli->error);
+        }
+
         $stmt_img->bind_param(
-            "isiiis",
+            "isiiisi",
             $id_usuario,
-            $nombre_final,
+            $nombre_original,
             $tamano,
             $alto,
             $ancho,
-            $ruta_bd
+            $ruta_bd,
+            $es_perfil
         );
 
-        $stmt_img->execute();
+        if (!$stmt_img->execute()) {
+            die("Error guardando imagen: " . $stmt_img->error);
+        }
+
         $id_imagen = $stmt_img->insert_id;
         $stmt_img->close();
 
-        $sql_rel = "INSERT INTO actividad_imagen (id_actividad, id_imagen)
+        /* Relacionar imagen con actividad */
+        $sql_rel = "INSERT INTO actividad_imagen 
+                    (id_actividad, id_imagen)
                     VALUES (?, ?)";
 
         $stmt_rel = $mysqli->prepare($sql_rel);
+
+        if (!$stmt_rel) {
+            die("Error preparando relación imagen: " . $mysqli->error);
+        }
+
         $stmt_rel->bind_param("ii", $id_actividad, $id_imagen);
-        $stmt_rel->execute();
+
+        if (!$stmt_rel->execute()) {
+            die("Error relacionando imagen con actividad: " . $stmt_rel->error);
+        }
+
         $stmt_rel->close();
     }
 }

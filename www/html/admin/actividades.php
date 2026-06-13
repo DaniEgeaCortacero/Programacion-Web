@@ -128,18 +128,15 @@ $actividades = $stmt->get_result();
         >
     </form>
 
-    <div class="admin_contenido">
-        <table class="admin_tabla">
+    <div class="admin_contenido admin_contenido_actividades">
+        <table class="admin_tabla admin_tabla_actividades_simple">
             <thead>
                 <tr>
                     <th>Título</th>
                     <th>Usuario</th>
                     <th>Tipo</th>
-                    <th>Fecha evento</th>
-                    <th>Publicación</th>
-                    <th>Imágenes</th>
-                    <th>Aplausos</th>
-                    <th>Acciones</th>
+                    <th>Fechas</th>
+                    <th>Datos</th>
                 </tr>
             </thead>
 
@@ -151,32 +148,39 @@ $actividades = $stmt->get_result();
                 <?php endif; ?>
 
                 <?php while ($a = $actividades->fetch_assoc()): ?>
-                    <tr>
+                    <tr class="fila_actividad_admin_info">
                         <td>
                             <strong><?= htmlspecialchars($a["titulo"]) ?></strong>
                         </td>
 
                         <td>
-                            <a 
-                                href="prototipo_main.php?vista=amistad_detalles&id=<?= intval($a["id_usuario"]) ?>"
-                                class="admin_link_usuario"
-                            >
+                            <a href="prototipo_main.php?vista=admin_actividades&id_usuario=<?= intval($a["id_usuario"]) ?>">
                                 @<?= htmlspecialchars($a["usuario"]) ?>
                             </a>
                         </td>
 
-                        <td><?= htmlspecialchars($a["tipo_actividad"]) ?></td>
-
-                        <td><?= htmlspecialchars($a["fecha_evento"]) ?></td>
-
-                        <td><?= htmlspecialchars($a["fecha_publicacion"]) ?></td>
-
-                        <td><?= intval($a["total_imagenes"]) ?></td>
-
-                        <td><?= intval($a["total_aplausos"]) ?></td>
+                        <td>
+                            <?= htmlspecialchars($a["tipo_actividad"]) ?>
+                        </td>
 
                         <td>
-                            <div class="acciones">
+                            <div class="admin_fechas_actividad">
+                                <span><strong>Evento:</strong> <?= htmlspecialchars($a["fecha_evento"]) ?></span>
+                                <span><strong>Publicación:</strong> <?= htmlspecialchars($a["fecha_publicacion"]) ?></span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="admin_datos_actividad">
+                                <span><strong>Imágenes:</strong> <?= intval($a["total_imagenes"]) ?></span>
+                                <span><strong>Aplausos:</strong> <?= intval($a["total_aplausos"]) ?></span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="fila_actividad_admin_acciones">
+                        <td colspan="5">
+                            <div class="acciones_actividad_admin">
                                 <button 
                                     type="button" 
                                     class="btn_tabla"

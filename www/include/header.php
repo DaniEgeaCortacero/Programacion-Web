@@ -61,7 +61,6 @@ if (isset($_SESSION["id_usuario"])) {
 
     <div id="profileDropdown" class="profileDropdown">
         <a href="prototipo_main.php?vista=perfil">Perfil</a>
-        <a href="prototipo_main.php?vista=configuracion">Configuración</a>
         <a href="../controladores/logout.php">Cerrar sesión</a>
     </div>
 </header>

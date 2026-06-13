@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="TrailSync Test GPX Generator" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Sevilla Guadalquivir - Ciclismo en ruta</name>
+    <desc>Ruta llana de prueba junto al río Guadalquivir.</desc>
+    <time>2026-06-17T08:45:00Z</time>
+  </metadata>
+  <trk>
+    <name>Sevilla Guadalquivir - Ciclismo en ruta</name>
+    <type>Ciclismo en ruta</type>
+    <trkseg>
+      <trkpt lat="37.386200" lon="-6.003800">
+        <ele>8.0</ele>
+        <time>2026-06-17T08:45:00Z</time>
+      </trkpt>
+      <trkpt lat="37.388300" lon="-6.003400">
+        <ele>10.9</ele>
+        <time>2026-06-17T08:45:42Z</time>
+      </trkpt>
+      <trkpt lat="37.390400" lon="-6.003000">
+        <ele>11.3</ele>
+        <time>2026-06-17T08:46:24Z</time>
+      </trkpt>
+      <trkpt lat="37.392500" lon="-6.002600">
+        <ele>9.0</ele>
+        <time>2026-06-17T08:47:06Z</time>
+      </trkpt>
+      <trkpt lat="37.394200" lon="-6.002150">
+        <ele>11.4</ele>
+        <time>2026-06-17T08:47:41Z</time>
+      </trkpt>
+      <trkpt lat="37.395900" lon="-6.001700">
+        <ele>12.5</ele>
+        <time>2026-06-17T08:48:16Z</time>
+      </trkpt>
+      <trkpt lat="37.397600" lon="-6.001250">
+        <ele>11.9</ele>
+        <time>2026-06-17T08:48:51Z</time>
+      </trkpt>
+      <trkpt lat="37.399300" lon="-6.000800">
+        <ele>10.0</ele>
+        <time>2026-06-17T08:49:26Z</time>
+      </trkpt>
+      <trkpt lat="37.400900" lon="-5.999975">
+        <ele>12.4</ele>
+        <time>2026-06-17T08:50:00Z</time>
+      </trkpt>
+      <trkpt lat="37.402500" lon="-5.999150">
+        <ele>13.5</ele>
+        <time>2026-06-17T08:50:34Z</time>
+      </trkpt>
+      <trkpt lat="37.404100" lon="-5.998325">
+        <ele>12.9</ele>
+        <time>2026-06-17T08:51:08Z</time>
+      </trkpt>
+      <trkpt lat="37.405700" lon="-5.997500">
+        <ele>11.0</ele>
+        <time>2026-06-17T08:51:42Z</time>
+      </trkpt>
+      <trkpt lat="37.407075" lon="-5.996375">
+        <ele>12.9</ele>
+        <time>2026-06-17T08:52:15Z</time>
+      </trkpt>
+      <trkpt lat="37.408450" lon="-5.995250">
+        <ele>13.5</ele>
+        <time>2026-06-17T08:52:48Z</time>
+      </trkpt>
+      <trkpt lat="37.409825" lon="-5.994125">
+        <ele>12.4</ele>
+        <time>2026-06-17T08:53:21Z</time>
+      </trkpt>
+      <trkpt lat="37.411200" lon="-5.993000">
+        <ele>10.0</ele>
+        <time>2026-06-17T08:53:54Z</time>
+      </trkpt>
+      <trkpt lat="37.412800" lon="-5.991333">
+        <ele>12.3</ele>
+        <time>2026-06-17T08:54:35Z</time>
+      </trkpt>
+      <trkpt lat="37.414400" lon="-5.989667">
+        <ele>11.9</ele>
+        <time>2026-06-17T08:55:16Z</time>
+      </trkpt>
+      <trkpt lat="37.416000" lon="-5.988000">
+        <ele>9.0</ele>
+        <time>2026-06-17T08:55:57Z</time>
+      </trkpt>
+      <trkpt lat="37.414700" lon="-5.989240">
+        <ele>11.0</ele>
+        <time>2026-06-17T08:56:29Z</time>
+      </trkpt>
+      <trkpt lat="37.413400" lon="-5.990480">
+        <ele>12.3</ele>
+        <time>2026-06-17T08:57:01Z</time>
+      </trkpt>
+      <trkpt lat="37.412100" lon="-5.991720">
+        <ele>12.5</ele>
+        <time>2026-06-17T08:57:33Z</time>
+      </trkpt>
+      <trkpt lat="37.410800" lon="-5.992960">
+        <ele>11.6</ele>
+        <time>2026-06-17T08:58:05Z</time>
+      </trkpt>
+      <trkpt lat="37.409500" lon="-5.994200">
+        <ele>10.0</ele>
+        <time>2026-06-17T08:58:37Z</time>
+      </trkpt>
+      <trkpt lat="37.407767" lon="-5.995117">
+        <ele>11.5</ele>
+        <time>2026-06-17T08:59:15Z</time>
+      </trkpt>
+      <trkpt lat="37.406033" lon="-5.996033">
+        <ele>12.6</ele>
+        <time>2026-06-17T08:59:53Z</time>
+      </trkpt>
+      <trkpt lat="37.404300" lon="-5.996950">
+        <ele>13.0</ele>
+        <time>2026-06-17T09:00:31Z</time>
+      </trkpt>
+      <trkpt lat="37.402567" lon="-5.997867">
+        <ele>12.6</ele>
+        <time>2026-06-17T09:01:09Z</time>
+      </trkpt>
+      <trkpt lat="37.400833" lon="-5.998783">
+        <ele>11.5</ele>
+        <time>2026-06-17T09:01:47Z</time>
+      </trkpt>
+      <trkpt lat="37.399100" lon="-5.999700">
+        <ele>10.0</ele>
+        <time>2026-06-17T09:02:25Z</time>
+      </trkpt>
+      <trkpt lat="37.397487" lon="-6.000212">
+        <ele>10.9</ele>
+        <time>2026-06-17T09:02:58Z</time>
+      </trkpt>
+      <trkpt lat="37.395875" lon="-6.000725">
+        <ele>11.6</ele>
+        <time>2026-06-17T09:03:31Z</time>
+      </trkpt>
+      <trkpt lat="37.394262" lon="-6.001238">
+        <ele>12.0</ele>
+        <time>2026-06-17T09:04:04Z</time>
+      </trkpt>
+      <trkpt lat="37.392650" lon="-6.001750">
+        <ele>12.0</ele>
+        <time>2026-06-17T09:04:37Z</time>
+      </trkpt>
+      <trkpt lat="37.391038" lon="-6.002262">
+        <ele>11.5</ele>
+        <time>2026-06-17T09:05:10Z</time>
+      </trkpt>
+      <trkpt lat="37.389425" lon="-6.002775">
+        <ele>10.6</ele>
+        <time>2026-06-17T09:05:43Z</time>
+      </trkpt>
+      <trkpt lat="37.387813" lon="-6.003287">
+        <ele>9.4</ele>
+        <time>2026-06-17T09:06:16Z</time>
+      </trkpt>
+      <trkpt lat="37.386200" lon="-6.003800">
+        <ele>8.0</ele>
+        <time>2026-06-17T09:06:49Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

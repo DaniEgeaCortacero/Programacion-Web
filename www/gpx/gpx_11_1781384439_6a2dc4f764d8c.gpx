@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="TrailSync Test GPX Generator" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Málaga Litoral por tierra V2</name>
+    <desc>Ruta de prueba por el paseo marítimo de Málaga, desde La Malagueta hacia El Palo, con puntos colocados sobre tierra para evitar atravesar la bahía.</desc>
+    <time>2026-06-19T09:15:00Z</time>
+  </metadata>
+  <trk>
+    <name>Málaga Litoral por tierra V2</name>
+    <type>Ciclismo en ruta</type>
+    <trkseg>
+      <trkpt lat="36.719787" lon="-4.411134">
+        <ele>7.0</ele>
+        <time>2026-06-19T09:15:00Z</time>
+      </trkpt>
+      <trkpt lat="36.719946" lon="-4.409221">
+        <ele>7.0</ele>
+        <time>2026-06-19T09:15:35Z</time>
+      </trkpt>
+      <trkpt lat="36.720115" lon="-4.407441">
+        <ele>7.0</ele>
+        <time>2026-06-19T09:16:08Z</time>
+      </trkpt>
+      <trkpt lat="36.720265" lon="-4.405697">
+        <ele>7.0</ele>
+        <time>2026-06-19T09:16:40Z</time>
+      </trkpt>
+      <trkpt lat="36.720401" lon="-4.403935">
+        <ele>8.0</ele>
+        <time>2026-06-19T09:17:12Z</time>
+      </trkpt>
+      <trkpt lat="36.720529" lon="-4.402046">
+        <ele>8.0</ele>
+        <time>2026-06-19T09:17:47Z</time>
+      </trkpt>
+      <trkpt lat="36.720678" lon="-4.400213">
+        <ele>8.0</ele>
+        <time>2026-06-19T09:18:21Z</time>
+      </trkpt>
+      <trkpt lat="36.720845" lon="-4.398362">
+        <ele>8.0</ele>
+        <time>2026-06-19T09:18:55Z</time>
+      </trkpt>
+      <trkpt lat="36.721004" lon="-4.396530">
+        <ele>8.0</ele>
+        <time>2026-06-19T09:19:29Z</time>
+      </trkpt>
+      <trkpt lat="36.721197" lon="-4.394688">
+        <ele>8.0</ele>
+        <time>2026-06-19T09:20:03Z</time>
+      </trkpt>
+      <trkpt lat="36.721420" lon="-4.392790">
+        <ele>8.0</ele>
+        <time>2026-06-19T09:20:38Z</time>
+      </trkpt>
+      <trkpt lat="36.721670" lon="-4.390930">
+        <ele>9.0</ele>
+        <time>2026-06-19T09:21:13Z</time>
+      </trkpt>
+      <trkpt lat="36.721932" lon="-4.389017">
+        <ele>9.0</ele>
+        <time>2026-06-19T09:21:49Z</time>
+      </trkpt>
+      <trkpt lat="36.722206" lon="-4.387150">
+        <ele>9.0</ele>
+        <time>2026-06-19T09:22:24Z</time>
+      </trkpt>
+      <trkpt lat="36.722462" lon="-4.385216">
+        <ele>9.0</ele>
+        <time>2026-06-19T09:23:00Z</time>
+      </trkpt>
+      <trkpt lat="36.722716" lon="-4.383275">
+        <ele>9.0</ele>
+        <time>2026-06-19T09:23:36Z</time>
+      </trkpt>
+      <trkpt lat="36.722936" lon="-4.381346">
+        <ele>9.0</ele>
+        <time>2026-06-19T09:24:12Z</time>
+      </trkpt>
+      <trkpt lat="36.723144" lon="-4.379443">
+        <ele>9.0</ele>
+        <time>2026-06-19T09:24:47Z</time>
+      </trkpt>
+      <trkpt lat="36.723322" lon="-4.377520">
+        <ele>9.0</ele>
+        <time>2026-06-19T09:25:22Z</time>
+      </trkpt>
+      <trkpt lat="36.723495" lon="-4.375640">
+        <ele>10.0</ele>
+        <time>2026-06-19T09:25:57Z</time>
+      </trkpt>
+      <trkpt lat="36.723682" lon="-4.373713">
+        <ele>10.0</ele>
+        <time>2026-06-19T09:26:33Z</time>
+      </trkpt>
+      <trkpt lat="36.723881" lon="-4.371817">
+        <ele>10.0</ele>
+        <time>2026-06-19T09:27:08Z</time>
+      </trkpt>
+      <trkpt lat="36.724082" lon="-4.369950">
+        <ele>10.0</ele>
+        <time>2026-06-19T09:27:42Z</time>
+      </trkpt>
+      <trkpt lat="36.724277" lon="-4.368093">
+        <ele>10.0</ele>
+        <time>2026-06-19T09:28:16Z</time>
+      </trkpt>
+      <trkpt lat="36.724481" lon="-4.366235">
+        <ele>10.0</ele>
+        <time>2026-06-19T09:28:50Z</time>
+      </trkpt>
+      <trkpt lat="36.724709" lon="-4.364374">
+        <ele>10.0</ele>
+        <time>2026-06-19T09:29:24Z</time>
+      </trkpt>
+      <trkpt lat="36.724940" lon="-4.362540">
+        <ele>10.0</ele>
+        <time>2026-06-19T09:29:58Z</time>
+      </trkpt>
+      <trkpt lat="36.725178" lon="-4.360690">
+        <ele>10.0</ele>
+        <time>2026-06-19T09:30:32Z</time>
+      </trkpt>
+      <trkpt lat="36.725420" lon="-4.358875">
+        <ele>10.0</ele>
+        <time>2026-06-19T09:31:06Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

@@ -15,7 +15,7 @@
         </li>
         <?php endif; ?>
 
-        <li><a href="../index.php">INDEX</a></li>  <!-- pagina nueva: target="_blank" -->
+        <li><a href="../html/prototipo_main.php?vista=perfil">Mi Perfil</a></li>  <!-- pagina nueva: target="_blank" -->
       </ul>
     </nav>
   </aside>
